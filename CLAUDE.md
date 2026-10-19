@@ -13,10 +13,14 @@ Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Tekl
 - Supabase free plan pause'u için GitHub Actions keepalive cron
 
 ### Ekip ve sorumluluk
-- **Sadık** (`sadikbilal`, koordinatör): Supabase şema/RLS, yönetici ekranı, rate limit, CI/CD, kurum yazışmaları, raporlar
+- **Sadık** (`sadikbilal`, koordinatör): Supabase şema/RLS, yönetici ekranı, rate limit, CI/CD, kurum yazışmaları, raporlar; tüm `app` issue'larında ortak geliştirici; eğim ölçer, Dijkstra rota ve sorun bildir ekranında lider
 - **Kaan**: Uygulama iskeleti, harita, detay, filtre, en yakın, erişilebilirlik (TalkBack/WCAG), Figma, ön anket
-- **Alper**: Saha veri formu ve ölçüm yöntemi, eğim ölçer, veri girişi, basamaksız güzergâh + Dijkstra rota, sorun bildir ekranı, QR sayfası/etiketleri, son anket ve etki analizi
+- **Alper**: Saha veri formu ve ölçüm yöntemi, veri girişi, basamaksız güzergâh kaydı, QR sayfası/etiketleri, son anket ve etki analizi; RN'yi yeni öğreniyor — eğim ölçer, rota ve sorun bildir ekranında Sadık ile eşli çalışır
 - GitHub: `sadikbilal`, `kaanuzavci`, `alpersimsekk` — org `kampus-erisilebilirlik`, repo `kampus-erisilebilirlik-haritasi`
+
+### Proje panosu
+- GitHub Projects #1 (org): Tablo, Kanban, Benim işlerim görünümleri
+- Status: Backlog → Yapılacak → Devam Ediyor → İncelemede → Tamamlandı
 
 ### Milestone'lar (dönem başı 2026-09-21 varsayıldı)
 | Milestone | Bitiş |

@@ -125,15 +125,15 @@ issue alper "$M1" "saha,rapor" "Bina/nokta listesi, saha veri formu ve ölçüm 
 - [ ] Ölçüm yöntemi dokümanı: kalibrasyon, en az 3 noktadan ölçüm, şerit metre ile yükseklik/uzunluk doğrulaması
 - [ ] \`docs/saha/\` altına eklenmesi"
 
-issue alper "$M2" "app,saha" "Eğim ölçer ekranı (ekip için)" "expo-sensors ivmeölçer ile eğim (%); düz zeminde kalibrasyon, çoklu ölçüm ortalaması, TS 9111 sınırına göre uyarı. Yalnızca yönetici/ekip modunda görünür."
+issue sadik "$M2" "app,saha" "Eğim ölçer ekranı (ekip için)" "expo-sensors ivmeölçer ile eğim (%); düz zeminde kalibrasyon, çoklu ölçüm ortalaması, TS 9111 sınırına göre uyarı. Yalnızca yönetici/ekip modunda görünür."
 
 issue alper "$M2" "saha,backend" "Saha verisinin toplanması ve veri tabanına girilmesi" "Hedef: ≥60 nokta, 8 bina. Fotoğraflar kişi içermeyecek ve sıkıştırılarak Storage'a yüklenecek. Seed script ile toplu giriş."
 
 issue alper "$M2" "saha" "Basamaksız güzergâhların yürünerek kaydedilmesi" "8 binayı bağlayan merdivensiz yolların GPS ile kaydı; \`path_nodes\`/\`path_edges\` grafına dönüştürülmesi (düğümler: kavşaklar, bina girişleri, noktalar)."
 
-issue alper "$M3" "app" "Basamaksız rota: Dijkstra ve harita üzerinde çizim" "Yol ağı grafı üzerinde cihazda en kısa yol; harita üzerinde polyline; mesafe ve sözlü adım listesi (ekran okuyucu için). Birim testleri ile."
+issue sadik "$M3" "app" "Basamaksız rota: Dijkstra ve harita üzerinde çizim" "Yol ağı grafı üzerinde cihazda en kısa yol; harita üzerinde polyline; mesafe ve sözlü adım listesi (ekran okuyucu için). Birim testleri ile."
 
-issue alper "$M3" "app" "Sorun bildir ekranı (anonim)" "Nokta seçimi, durum (arızalı vb.), kısa açıklama (≤500). Üyelik yok, kişisel veri yok. Başarı/hata geri bildirimi ekran okuyucuyla duyurulmalı."
+issue sadik "$M3" "app" "Sorun bildir ekranı (anonim)" "Nokta seçimi, durum (arızalı vb.), kısa açıklama (≤500). Üyelik yok, kişisel veri yok. Başarı/hata geri bildirimi ekran okuyucuyla duyurulmalı."
 
 issue alper "$M3" "web" "QR hedef sayfası (GitHub Pages) ve deep link" "\`/b/<slug>\` bina özeti + APK indirme bağlantısı; uygulama yüklüyse Android App Links/scheme ile ilgili bina sayfasının açılması. Ziyaret sayacı (çerezsiz)."
 
