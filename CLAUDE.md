@@ -14,9 +14,9 @@ Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Tekl
 
 ### Ekip ve sorumluluk
 - **Sadık** (`sadikbilal`, koordinatör): Supabase şema/RLS, yönetici ekranı, rate limit, CI/CD, kurum yazışmaları, raporlar
-- **Kaan**: Uygulama iskeleti, harita, detay, filtre, en yakın, erişilebilirlik (TalkBack/WCAG), Figma, anketler
-- **Alper**: Saha veri formu ve ölçüm yöntemi, eğim ölçer, veri girişi, basamaksız güzergâh + Dijkstra rota, sorun bildir ekranı, QR sayfası/etiketleri
-- Kaan ve Alper GitHub'a davet edilince `sorumlu:kaan` / `sorumlu:alper` etiketli issue'lar kendilerine atanacak
+- **Kaan**: Uygulama iskeleti, harita, detay, filtre, en yakın, erişilebilirlik (TalkBack/WCAG), Figma, ön anket
+- **Alper**: Saha veri formu ve ölçüm yöntemi, eğim ölçer, veri girişi, basamaksız güzergâh + Dijkstra rota, sorun bildir ekranı, QR sayfası/etiketleri, son anket ve etki analizi
+- GitHub: `sadikbilal`, `kaanuzavci`, `alpersimsekk` — org `kampus-erisilebilirlik`, repo `kampus-erisilebilirlik-haritasi`
 
 ### Milestone'lar (dönem başı 2026-09-21 varsayıldı)
 | Milestone | Bitiş |
@@ -28,6 +28,6 @@ Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Tekl
 | Hafta 13-14 — Teslim | 2026-12-27 |
 
 ### Açık sorular
-- GitHub org adı (öneri: `kampus-erisilebilirlik`) — org web arayüzünden açılmalı, API ile açılamıyor
-- Kaan ve Alper'in GitHub kullanıcı adları
+- Repo şu an private; açık kaynak için public yapılacak
+- Kaan/Alper'in repo yetkisi org varsayılanı (read) — push için write verilmeli
 - Dönem başlangıç tarihi (milestone tarihleri buna göre kaydırılabilir)

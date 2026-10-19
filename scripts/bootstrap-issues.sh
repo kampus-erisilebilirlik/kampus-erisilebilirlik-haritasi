@@ -3,7 +3,7 @@
 set -euo pipefail
 
 REPO="${1:?owner/repo gerekli}"
-SADIK="sadikbilal"
+declare -A GH=([sadik]=sadikbilal [kaan]=kaanuzavci [alper]=alpersimsekk)
 
 label() { gh label create "$1" --repo "$REPO" --color "$2" --description "$3" --force >/dev/null; }
 
@@ -15,9 +15,8 @@ milestone() {
 # issue <sorumlu> <milestone> <labels> <title> <body>
 issue() {
   local owner="$1" ms="$2" labels="$3" title="$4" body="$5"
-  local args=(--repo "$REPO" --title "$title" --body "$body" --milestone "$ms" --label "sorumlu:$owner,$labels")
-  [[ "$owner" == "sadik" ]] && args+=(--assignee "$SADIK")
-  gh issue create "${args[@]}"
+  gh issue create --repo "$REPO" --title "$title" --body "$body" --milestone "$ms" \
+    --label "sorumlu:$owner,$labels" --assignee "${GH[$owner]}"
 }
 
 label "sorumlu:sadik" "1d76db" "Sadık Bilal Şan"
@@ -117,7 +116,7 @@ issue kaan "$M3" "app,a11y" "TalkBack ve WCAG 2.1 denetimi" "Tüm ekranlarda acc
 
 issue kaan "$M3" "app" "Bilgi ekranı: birim iletişimi, haklar, KVKK aydınlatma metni" ""
 
-issue kaan "$M4" "rapor" "Son anket ve ön/son anket + kullanım verisi analizi" "\"Kolay buldum\" oranı hedefi ≥%70; Releases indirme sayısı, günlük açılış, bildirim sayısı, QR ziyaretleri."
+issue alper "$M4" "rapor" "Son anket ve ön/son anket + kullanım verisi analizi" "\"Kolay buldum\" oranı hedefi ≥%70; Releases indirme sayısı, günlük açılış, bildirim sayısı, QR ziyaretleri."
 
 # ───────────── Alper ─────────────
 issue alper "$M1" "saha,rapor" "Bina/nokta listesi, saha veri formu ve ölçüm yöntemi" "## Yapılacaklar
