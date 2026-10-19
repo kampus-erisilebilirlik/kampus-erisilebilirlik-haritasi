@@ -31,6 +31,14 @@ Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Tekl
 | Hafta 12 — QR Etiketleri ve Analiz | 2026-12-13 |
 | Hafta 13-14 — Teslim | 2026-12-27 |
 
+### Geliştirmeye başlarken yapılacaklar
+- [ ] Repoyu public yap (GitHub Pages / QR sayfası #27 için şart): `gh repo edit kampus-erisilebilirlik/kampus-erisilebilirlik-haritasi --visibility public --accept-visibility-change-consequences`
+- [ ] Kaan ve Alper'e write yetkisi: `gh api -X PUT repos/kampus-erisilebilirlik/kampus-erisilebilirlik-haritasi/collaborators/<user> -f permission=push`
+- [ ] Proje panosu Workflows (web UI): "Item closed" ve "Pull request merged" → Tamamlandı; "Auto-add to project" açık; PR açılınca İncelemede
+- [ ] TS 9111 eşik değerleri standardın metninden kaynak maddeyle doğrulanacak (#21) — internetteki değerlere güvenilmeyecek
+- [ ] QR URL'si etiket basımından önce kesinleşecek (#27, #28), basımdan sonra değiştirilemez
+- Issue'lara eklenen, formda olmayan kararlar: harita yanında zorunlu liste görünümü, çevrimdışı önbellek, `v_*` lat/lng view'ları, `qr_visits` sayacı, `path_edges.note`, `submit_report` RPC + client token
+
 ### Açık sorular
 - Repo şu an private; açık kaynak için public yapılacak
 - Kaan/Alper'in repo yetkisi org varsayılanı (read) — push için write verilmeli
