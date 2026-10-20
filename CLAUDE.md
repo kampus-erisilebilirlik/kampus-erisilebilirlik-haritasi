@@ -45,7 +45,7 @@ Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Tekl
 - Dönem başlangıç tarihi (milestone tarihleri buna göre kaydırılabilir)
 
 ## Handoff — 2026-10-20
-Completed: #1 kod kısmı (PR açıldı): config.toml (signup kapalı), view'lar + `point-photos` bucket/policy migration'ı, pgTAP RLS testleri (17/17 geçiyor), `app/src/types/database.ts`, `.env.example`; #4 keepalive workflow'u ayrı branch'te
+Completed: #1 kod kısmı (PR açıldı): config.toml (signup kapalı), view'lar + `point-photos` bucket/policy migration'ı, pgTAP RLS testleri (17/17 geçiyor), `app/src/types/database.ts`, `.env.example`; #4 keepalive (PR #30); #6 SQL kısmı — `submit_report` RPC + testler (PR #31, #29 üzerine stacked)
 Blocked: #1 dashboard adımları elle yapılacak (Supabase projesi Frankfurt/Free, Kaan+Alper Developer daveti, admin kullanıcı + `insert into admins`, `supabase link` + `db push`); #4 için repo secrets `SUPABASE_URL`/`SUPABASE_ANON_KEY` gerekli; #3 → #13'ü bekliyor
-Next: canlı projeye `db push` → `gen types --linked` ile tipleri doğrula; #4'ü `workflow_dispatch` ile test et; #13 sonrası #3 CI
+Next: #6 istemci kısmı (`clientToken.ts`) #13 sonrası #26 ile; canlı projeye `db push` → `gen types --linked` ile tipleri doğrula; #4'ü `workflow_dispatch` ile test et; #13 sonrası #3 CI
 Decisions made: v_points açık kolon listesi (ham geography dönmez); storage policy `to authenticated` + `public.is_admin()`; view kolonları üretilen tiplerde nullable — uygulama tarafında non-null assert/Zod ile daraltılmalı; keepalive'da boş commit adımı yok (main korumalı), devre dışı kalma riski README'de
