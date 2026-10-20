@@ -49,14 +49,14 @@ export type Database = {
                   ]
                 },"issue_reports": {
                   Row: {
-                    "created_at": string,"description": string,"id": string,"point_id": string,"reported_status": Database["public"]['Enums']["point_status"],"status": Database["public"]['Enums']["report_status"]
+                    "client_token": string | null,"created_at": string,"description": string,"id": string,"point_id": string,"reported_status": Database["public"]['Enums']["point_status"],"status": Database["public"]['Enums']["report_status"]
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"description"?: string,"id"?: string,"point_id": string,"reported_status"?: Database["public"]['Enums']["point_status"],"status"?: Database["public"]['Enums']["report_status"]
+                    "client_token"?: string | null,"created_at"?: string,"description"?: string,"id"?: string,"point_id": string,"reported_status"?: Database["public"]['Enums']["point_status"],"status"?: Database["public"]['Enums']["report_status"]
                   }
                   Update: {
-                    "created_at"?: string,"description"?: string,"id"?: string,"point_id"?: string,"reported_status"?: Database["public"]['Enums']["point_status"],"status"?: Database["public"]['Enums']["report_status"]
+                    "client_token"?: string | null,"created_at"?: string,"description"?: string,"id"?: string,"point_id"?: string,"reported_status"?: Database["public"]['Enums']["point_status"],"status"?: Database["public"]['Enums']["report_status"]
                   }
                   Relationships: [
                     {
@@ -1037,6 +1037,9 @@ isOneToOne: false
                            },
 "st_wrapx":
 { Args: { "geom": unknown,"move": number,"wrap": number }; Returns: unknown
+                           },
+"submit_report":
+{ Args: { "p_client_token": string,"p_description": string,"p_point_id": string,"p_reported_status": Database["public"]['Enums']["point_status"] }; Returns: undefined
                            },
 "unlockrows":
 { Args: { "": string }; Returns: number
