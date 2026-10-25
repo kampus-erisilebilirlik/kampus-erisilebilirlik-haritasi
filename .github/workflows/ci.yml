@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -33,3 +34,33 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm test --ci
+
+  # db job'u yalnızca supabase/ değişince çalışır; atlandığında da başarılı sayılır (zorunlu kontrol olabilir)
+  changes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      supabase: ${{ steps.filter.outputs.supabase }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            supabase:
+              - 'supabase/**'
+              - '.github/workflows/ci.yml'
+
+  db:
+    needs: changes
+    if: needs.changes.outputs.supabase == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: 2.122.0
+      # Yalnızca Postgres: migration'lar sıfırdan uygulanır, ardından pgTAP RLS testleri
+      - run: supabase db start
+      - run: supabase test db
