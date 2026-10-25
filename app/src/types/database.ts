@@ -147,6 +147,7 @@ export type Database = {
           geometry: unknown
           id: string
           length_m: number
+          note: string
           to_node: string
         }
         Insert: {
@@ -154,6 +155,7 @@ export type Database = {
           geometry?: unknown
           id?: string
           length_m: number
+          note?: string
           to_node: string
         }
         Update: {
@@ -161,6 +163,7 @@ export type Database = {
           geometry?: unknown
           id?: string
           length_m?: number
+          note?: string
           to_node?: string
         }
         Relationships: [
@@ -1435,6 +1438,10 @@ export type Database = {
       st_wrapx: {
         Args: { geom: unknown; move: number; wrap: number }
         Returns: unknown
+      }
+      replace_path_graph: {
+        Args: { p_edges: Json; p_nodes: Json }
+        Returns: undefined
       }
       submit_report: {
         Args: {

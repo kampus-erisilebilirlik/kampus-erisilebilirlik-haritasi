@@ -66,3 +66,20 @@ pnpm seed                                            # yazar
 pnpm test        # doğrulama, medyan, puanlama
 pnpm typecheck
 ```
+
+## Basamaksız yol ağı (#24)
+
+`docs/saha/yol-agi.geojson` → `path_nodes` / `path_edges`. Çizim kuralları ve adımlar: [`docs/saha/yol-agi.md`](../../docs/saha/yol-agi.md).
+
+```bash
+pnpm import-paths --dry-run --engeller ../../docs/saha/engeller.md
+pnpm import-paths
+```
+
+| Seçenek | Varsayılan |
+|---|---|
+| `--geojson <dosya>` | `../../docs/saha/yol-agi.geojson` |
+| `--points`, `--buildings` | seed ile aynı |
+| `--engeller <dosya>` | `engel` işaretlerini Markdown tablo olarak yazar |
+
+Bağlantı sorunu (graf birden fazla parça, ana ağa bağlı olmayan bina) varsa yazmaz. Yazarken eski graf silinir ve yenisi `replace_path_graph` ile tek transaction'da yazılır.
