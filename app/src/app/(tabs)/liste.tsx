@@ -1,38 +1,48 @@
-import { FlatList, View } from "react-native";
+import { useMemo } from "react";
+import { SectionList, View } from "react-native";
 
 import { AppText } from "@/components/AppText";
-import { StatusBadge } from "@/components/StatusBadge";
+import { PointRow } from "@/components/PointRow";
+import { ScoreBadge } from "@/components/ScoreBadge";
 import { SyncStatus } from "@/components/SyncStatus";
-import { pointTypeLabel } from "@/lib/labels";
+import { groupByBuilding, type BuildingSection } from "@/lib/points";
 import { useDataStore } from "@/store/data";
 import { useTheme } from "@/theme/ThemeProvider";
 
+// Haritayı kullanamayanlar (ör. ekran okuyucu) için haritadaki her bilginin liste karşılığı
 export default function ListScreen() {
-  const { colors, spacing } = useTheme();
+  const { spacing } = useTheme();
+  const buildings = useDataStore((s) => s.buildings);
   const points = useDataStore((s) => s.points);
+  const status = useDataStore((s) => s.status);
+  const load = useDataStore((s) => s.load);
+  const sections = useMemo(() => groupByBuilding(buildings, points), [buildings, points]);
+
   return (
-    <FlatList
-      data={points}
+    <SectionList
+      sections={sections}
       keyExtractor={(p) => p.id}
       contentContainerStyle={{ padding: spacing.md, gap: spacing.sm }}
+      stickySectionHeadersEnabled={false}
+      refreshing={status === "loading"}
+      onRefresh={() => void load()}
       ListHeaderComponent={<SyncStatus />}
       ListEmptyComponent={<AppText muted>Henüz kayıtlı nokta yok.</AppText>}
-      renderItem={({ item }) => (
-        <View
-          style={{
-            padding: spacing.md,
-            gap: spacing.xs,
-            borderWidth: 1,
-            borderColor: colors.border,
-            borderRadius: 12,
-            backgroundColor: colors.surface,
-          }}
-        >
-          <AppText variant="heading">{item.name}</AppText>
-          <AppText muted>{pointTypeLabel[item.type]}</AppText>
-          <StatusBadge status={item.status} />
-        </View>
-      )}
+      renderSectionHeader={({ section }) => <SectionHeader section={section} />}
+      renderSectionFooter={({ section }) =>
+        section.data.length === 0 ? <AppText muted>Bu binada kayıtlı erişilebilirlik noktası yok.</AppText> : null
+      }
+      renderItem={({ item }) => <PointRow point={item} />}
     />
+  );
+}
+
+function SectionHeader({ section }: { section: BuildingSection }) {
+  const { spacing } = useTheme();
+  return (
+    <View style={{ gap: spacing.xs, paddingTop: spacing.md }}>
+      <AppText variant="title">{section.building?.name ?? "Bina dışı noktalar"}</AppText>
+      {section.building && <ScoreBadge score={section.building.score} />}
+    </View>
   );
 }
