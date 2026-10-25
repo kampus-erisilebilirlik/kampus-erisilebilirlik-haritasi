@@ -12,7 +12,7 @@ Her bina haritada üç renkten biriyle gösterilir (`buildings.score`). Kural ek
 
 Tanımlar:
 
-- **Basamaksız giriş:** binaya en az bir girişten basamak veya 2 cm'den yüksek eşik olmadan girilebiliyor. Rampa ile girilen giriş de basamaksız sayılır. `binalar.csv` dosyasında `basamaksiz_giris` kolonuna `evet` / `hayır` yazılır.
+- **Basamaksız giriş:** binaya en az bir girişten basamak veya eşik engeli olmadan girilebiliyor (eşik sınırı [ts9111.md](ts9111.md)'den alınır; doğrulanana kadar geçici olarak 2 cm). Rampa ile girilen giriş de basamaksız sayılır. `binalar.csv` dosyasında `basamaksiz_giris` kolonuna `evet` / `hayır` yazılır.
 - **Çok katlı:** `kat_sayisi` > 1. Tek katlı binada asansör aranmaz.
 - **Çalışan:** saha formunda `durum = çalışıyor`. `bilinmiyor` çalışıyor sayılmaz.
 

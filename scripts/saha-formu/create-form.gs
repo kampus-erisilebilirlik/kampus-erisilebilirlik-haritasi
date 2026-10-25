@@ -14,13 +14,14 @@ const BINALAR = [
 ];
 
 const NOKTA_KODU = /^[a-z0-9]+(-[a-z0-9]+)*-(ramp|elevator|toilet|parking|auto-door)-[0-9]+$/;
-const ONDALIK = '^-?[0-9]+([.,][0-9]+)?$';
+const ONDALIK = '^-?[0-9]+(\\.[0-9]+)?$';
+const TAM_SAYI = '^-?[0-9]+$';
 
 function createSahaFormu() {
   const form = FormApp.create('Kampüs Erişilebilirlik — Saha Veri Formu');
   form.setDescription(
     'Her yanıt bir nokta. Ölçüm yöntemi: docs/saha/olcum-yontemi.md. ' +
-      'Fotoğrafta kişi olmamalı. Ondalık için nokta kullanın (7.8).',
+      'Fotoğrafta kişi olmamalı. Ondalık için yalnızca nokta kullanın (7.8).',
   );
   form.setCollectEmail(false);
   form.setAllowResponseEdits(true);
@@ -32,7 +33,7 @@ function createSahaFormu() {
   text(form, 'ad', 'Kısa tanım, ör. Ana giriş rampası', true);
   number(form, 'enlem', 'Google Haritalar\'da uzun bas → ilk sayı (38.0…)', true);
   number(form, 'boylam', 'İkinci sayı (32.5…)', true);
-  number(form, 'kat', '0 = zemin, -1 = bodrum', true);
+  integer(form, 'kat', '0 = zemin, -1 = bodrum', true);
   choice(form, 'durum', '', ['çalışıyor', 'arızalı', 'bilinmiyor'], true);
   text(form, 'foto_dosyasi', 'Nokta kodu + .jpg', true);
   form.addParagraphTextItem().setTitle('sozlu_tarif').setHelpText('Sabit referans → yön → mesafe → dokunsal/işitsel işaret').setRequired(true);
@@ -51,6 +52,8 @@ function createSahaFormu() {
   text(form, 'olcen', 'Ölçümü yapan (veri tabanına girmez)', true);
 
   const sheet = SpreadsheetApp.create('Saha Veri Formu (Yanıtlar)');
+  // Türkçe yerel ayarda Sheets "7.8" gibi yanıtları tarih sanabilir; seed script'i noktalı sayı bekler
+  sheet.setSpreadsheetLocale('en_US');
   form.setDestination(FormApp.DestinationType.SPREADSHEET, sheet.getId());
 
   Logger.log('Doldurma linki: ' + form.getPublishedUrl());
@@ -65,6 +68,12 @@ function text(form, title, help, required) {
 function number(form, title, help, required) {
   return text(form, title, help, required).setValidation(
     FormApp.createTextValidation().requireTextMatchesPattern(ONDALIK).setHelpText('Sayı girin, ör. 7.8').build(),
+  );
+}
+
+function integer(form, title, help, required) {
+  return text(form, title, help, required).setValidation(
+    FormApp.createTextValidation().requireTextMatchesPattern(TAM_SAYI).setHelpText('Tam sayı girin, ör. 0 veya -1').build(),
   );
 }
 

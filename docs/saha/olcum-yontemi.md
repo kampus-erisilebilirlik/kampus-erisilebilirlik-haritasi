@@ -41,7 +41,7 @@ Telefon medyanı ile H/L sonucu arasındaki fark **%1'den büyükse** ölçümü
 
 ## Kapı eşiği ve engeller
 
-Rampa başında/sonunda eşik, ızgara, çukur gibi engeller varsa yüksekliğini cm olarak `notlar`a yazın. Basamaksız güzergâh kaydında (#24) 2 cm'den yüksek eşikler yolu keser.
+Rampa başında/sonunda eşik, ızgara, çukur gibi engeller varsa yüksekliğini cm olarak `notlar`a yazın. Basamaksız güzergâh kaydında (#24) hangi yükseklikteki eşiğin yolu kestiği TS 9111'den alınacak ([ts9111.md](ts9111.md), "Diğer" tablosu). Değer doğrulanana kadar 2 cm **geçici** olarak kullanılır.
 
 ## Fotoğraf kuralları
 

@@ -41,7 +41,7 @@ Elle tablo tutmak gerekirse aynı başlıklarla [`saha-formu-sablon.csv`](saha-f
 | notlar | | Diğer gözlemler | Rampa sonunda kapı eşiği 3 cm |
 | olcen | ✔ | Ölçümü yapanın adı (sadece ekip içi, veri tabanına girmez) | Alper |
 
-"rampa" yazan alanlar yalnızca tür rampa ise zorunlu. Ondalık ayırıcı olarak **nokta** kullanın (`7.8`). Virgül de kabul edilir ama karışıklığı önlemek için nokta tercih edin.
+"rampa" yazan alanlar yalnızca tür rampa ise zorunlu. Ondalık ayırıcı olarak yalnızca **nokta** kullanın (`7.8`). Form virgülü kabul etmez. Yanıt tablosu `en_US` yerel ayarıyla oluşturulur; Türkçe ayarda Sheets `7.8`'i tarih sanabilir, bu yüzden tablonun yerel ayarını değiştirmeyin. Elle CSV tutarken de nokta kullanın.
 
 ### Tür kodları (nokta_kodu içinde)
 
@@ -52,6 +52,8 @@ Elle tablo tutmak gerekirse aynı başlıklarla [`saha-formu-sablon.csv`](saha-f
 | tuvalet | `toilet` | toilet |
 | otopark | `parking` | parking |
 | otomatik kapı | `auto-door` | auto_door |
+
+Nokta türünün asıl kaynağı `nokta_kodu`dur. `tur` alanı sahada kontrol içindir: seed script'i (#23) ikisi uyuşmayan satırı içeri almaz ve hata olarak listeler.
 
 Sıra numarası bina ve tür içinde 1'den başlar: `merkezi-kutuphane-elevator-1`, `merkezi-kutuphane-elevator-2`. Aynı kod iki kez kullanılırsa seed script'i ikinci satırı ilkinin **güncellemesi** sayar. Bu yüzden kodları sahada not edin, tekrar etmeyin.
 
