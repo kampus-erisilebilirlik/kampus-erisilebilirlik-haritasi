@@ -137,7 +137,7 @@ export function toPointRecord(row: PointRow): PointRecord {
 
   const compliant =
     slope !== null && length !== null && width !== null && handrail !== null
-      ? checkRamp({ slopePct: slope, lengthCm: length, widthCm: width, handrail }).compliant
+      ? checkRamp({ slopePct: slope, lengthCm: length, widthCm: width, handrail, riseCm: rise ?? undefined }).compliant
       : null;
   const tapeSlope = slope !== null && rise !== null && length ? (rise / length) * 100 : null;
   const mismatch = tapeSlope !== null && slope !== null && Math.abs(tapeSlope - slope) > 1 ? round1(Math.abs(tapeSlope - slope)) : null;
