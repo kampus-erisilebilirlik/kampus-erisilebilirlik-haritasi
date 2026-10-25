@@ -2,6 +2,7 @@
   "expo": {
     "name": "Kampüs Erişilebilirlik",
     "slug": "kampus-erisilebilirlik",
+    "owner": "kampus-erisilebilirlik",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -37,6 +38,11 @@
         }
       ]
     ],
-    "scheme": "kampuserisim"
+    "scheme": "kampuserisim",
+    "extra": {
+      "eas": {
+        "projectId": "d6aec9f5-64d9-47f5-b1d2-dc13faf25f5c"
+      }
+    }
   }
 }
