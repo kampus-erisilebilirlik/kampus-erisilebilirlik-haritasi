@@ -4,3 +4,4 @@ jest.mock("@react-native-async-storage/async-storage", () =>
 
 // İkon fontu Jest'te yüklenemez; ikonlar zaten erişilebilirlik ağacından gizli
 jest.mock("@expo/vector-icons/Ionicons", () => () => null);
+jest.mock("@expo/vector-icons/MaterialCommunityIcons", () => () => null);
