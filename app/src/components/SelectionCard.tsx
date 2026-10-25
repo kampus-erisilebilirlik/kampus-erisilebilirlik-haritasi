@@ -1,5 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { Link } from "expo-router";
 import { useEffect, useMemo, type ReactNode } from "react";
 import { AccessibilityInfo, Pressable, View } from "react-native";
 
@@ -9,6 +10,7 @@ import type { Building, Point } from "@/lib/schemas";
 import { useDataStore } from "@/store/data";
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
+import { AppButton } from "./AppButton";
 import { AppText } from "./AppText";
 import { ScoreBadge } from "./ScoreBadge";
 import { StatusBadge } from "./StatusBadge";
@@ -95,6 +97,9 @@ function BuildingSummary({ building }: { building: Building }) {
       <ScoreBadge score={building.score} />
       {building.summary !== "" && <AppText numberOfLines={3}>{building.summary}</AppText>}
       <AppText muted>{facilities || "Bu binada kayıtlı erişilebilirlik noktası yok."}</AppText>
+      <Link href={{ pathname: "/bina/[slug]", params: { slug: building.slug } }} asChild>
+        <AppButton label="Bina sayfasını aç" />
+      </Link>
     </>
   );
 }
@@ -105,6 +110,9 @@ function PointSummary({ point }: { point: Point }) {
     <>
       <AppText muted>{pointSubtitle(point, buildingName)}</AppText>
       <StatusBadge status={point.status} />
+      <Link href={{ pathname: "/nokta/[id]", params: { id: point.id } }} asChild>
+        <AppButton label="Detayı aç" />
+      </Link>
     </>
   );
 }
