@@ -65,3 +65,9 @@ Blocked: #33 elle: `eas init` + projectId commit, `eas env:create` (EXPO_PUBLIC_
 Next: #32 merge → #33/#35 base'ini `main` yap (ikisi de app/package.json + lockfile değiştiriyor, ikincisinde lockfile çakışması `pnpm install` ile çözülür); Alper'in PR #34'ünü (saha planı) incele; #5 yönetici girişi
 Decisions made: stacked PR'lar #32'ye bağlı; base branch silinmeden önce bağlı PR'ların base'i `main`'e çekilir; EAS profilleri `environment` ile EAS ortam değişkenlerini kullanır (env repoya girmez); release notları `.github/release-notes.md`; secure-store `configureAndroidBackup: true`; PostgREST RPC hatası `error.message` = raise edilen kod
 
+## Handoff — 2026-10-25 (3)
+Completed: #32 (iskelet), #33 (CI/EAS/release), #35 (client token), #36 (eğim ölçer + inceleme düzeltmeleri), #34 (saha planı + düzeltmeler), #37 (AI imza kuralı) main'de; main'de typecheck/lint/test 50/50. #1/#4 commit'teki `Closes` ile kapanmıştı, yeniden açıldı. Yeni issue: #41 (CI'da pgTAP), #42 (preview APK + cihaz kabul testi). #5 ve #19'a not düşüldü
+Blocked: #1 Supabase canlı proje (dashboard), #4 repo secrets, #3 EAS init/env/EXPO_TOKEN + branch koruması (repo public olunca), #42 → #3 ve #1'e bağlı
+Next: Alper'in #40 (seed) → #39 (yol ağı, #40'a stacked) incelemesi; #41; #21 TS 9111 değerleri
+Decisions made: `Closes` yalnızca PR açıklamasına değil commit mesajına da yazılmaz, elle adımı kalan işte her yerde `Refs`; stacked PR'da base branch silinmeden önce bağlı PR'lar `main`'e retarget edilir (`--delete-branch` bağlı PR'ı kapatır, #31 ve #38'de oldu); ekip araçları `teamToolsEnabled` (`EXPO_PUBLIC_TEAM_TOOLS`, preview profilinde 1)
+
