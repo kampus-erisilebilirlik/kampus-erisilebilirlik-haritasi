@@ -81,6 +81,7 @@ pnpm dlx supabase gen types typescript --linked > app/src/types/database.ts
 - Her iş bir issue; branch adı `<issue-no>-kisa-aciklama` (ör. `12-harita-ekrani`)
 - `main`'e doğrudan push yok, PR + en az bir ekip arkadaşının onayı
 - Commit mesajları: `feat:`, `fix:`, `docs:`, `chore:` önekleri
+- Commit, PR ve yorumlara AI aracı imzası eklenmez (`Co-Authored-By: Claude`, "Generated with …" vb.). Claude Code için `.claude/settings.json` bunu kapatır.
 
 ## Supabase keepalive
 
