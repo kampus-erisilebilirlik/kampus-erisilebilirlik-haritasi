@@ -5,3 +5,6 @@ node_modules/
 *.log
 supabase/.temp/
 supabase/.branches/
+
+# Saha verisi: ham CSV ve fotoğraflar repoya girmez (#23)
+scripts/seed/data/
