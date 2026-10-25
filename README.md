@@ -41,6 +41,24 @@ EXPO_PUBLIC_SUPABASE_URL=...
 EXPO_PUBLIC_SUPABASE_ANON_KEY=...
 ```
 
+### Supabase (lokal)
+
+Docker gerekir. Repo kökünde:
+
+```bash
+pnpm dlx supabase start      # lokal Postgres + Auth + Storage, migrations uygulanır
+pnpm dlx supabase test db    # supabase/tests/ altındaki RLS testleri (pgTAP)
+pnpm dlx supabase db reset   # şemayı sıfırdan kurar
+```
+
+Şema değiştiğinde yeni dosya `supabase/migrations/<timestamp>_aciklama.sql` olarak eklenir, ardından tipler yeniden üretilir:
+
+```bash
+pnpm dlx supabase gen types typescript --linked > app/src/types/database.ts
+```
+
+`service_role` key uygulamaya veya repoya asla girmez.
+
 ## Çalışma düzeni
 
 - Her iş bir issue; branch adı `<issue-no>-kisa-aciklama` (ör. `12-harita-ekrani`)
