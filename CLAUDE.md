@@ -2,6 +2,9 @@
 
 Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Teklif_Formu_v2.docx`.
 
+## Kurallar (tüm ekip ve AI araçları için)
+- Commit, PR, issue ve yorumlarda AI aracı kendini eklemez: `Co-Authored-By: Claude`, "Generated with Claude Code", oturum linki veya benzeri imza/collaborator satırı yok. Repo `.claude/settings.json` (`attribution` boş) bunu Claude Code için zorlar; başka araç kullanan da aynı kurala uyar.
+
 ## Plan
 
 ### Mimari
