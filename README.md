@@ -28,18 +28,35 @@ docs/         Proje teklif formu, saha veri formu, ölçüm yöntemi, raporlar
 
 ## Geliştirme
 
+### Ortam kurulumu
+
+Harita Google Maps API key'i gerektirdiği için **Expo Go yeterli değil**, development build kullanılır.
+
+- Node 22+ ve pnpm (`corepack enable`)
+- Android Studio + Android SDK (Platform Tools, bir emülatör imajı) veya USB hata ayıklaması açık bir Android telefon
+- `ANDROID_HOME` ortam değişkeni ve `platform-tools` PATH'te (`adb devices` cihazı görmeli)
+
 ```bash
 cd app
 pnpm install
-pnpm start
+cp .env.example .env.local   # değerleri doldurun
+pnpm android                 # native build + cihaza kurulum (ilk sefer uzun sürer)
+pnpm start                   # sonraki çalıştırmalarda yalnızca Metro
 ```
 
-`app/.env.local` içine:
+Lokal Supabase ile çalışırken `EXPO_PUBLIC_SUPABASE_URL` olarak bilgisayarın yerel ağ IP'si verilir (`http://192.168.x.x:54321`); emülatörde `http://10.0.2.2:54321`.
 
+Eksik veya hatalı env ile uygulama açılışta "Yapılandırma hatası" ekranı gösterir.
+
+### Kontroller
+
+```bash
+pnpm typecheck
+pnpm lint
+pnpm test
 ```
-EXPO_PUBLIC_SUPABASE_URL=...
-EXPO_PUBLIC_SUPABASE_ANON_KEY=...
-```
+
+Paket eklerken `pnpm expo install <paket>` kullanılır (SDK 58 ile uyumlu sürümü seçer). Uygulama kodu `app/src/`: ekranlar `app/`, ortak bileşenler `components/`, Supabase ve yardımcılar `lib/`, Zustand store'ları `store/`, tema `theme/`.
 
 ### Supabase (lokal)
 
