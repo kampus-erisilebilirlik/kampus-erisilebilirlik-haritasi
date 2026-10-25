@@ -29,6 +29,8 @@ export interface RampInput {
   lengthCm: number;
   widthCm: number;
   handrail: Handrail;
+  // Şerit metreyle ölçülen toplam yükselme; yoksa eğim × uzunluktan hesaplanır
+  riseCm?: number;
 }
 
 export interface RampCheck {
@@ -59,7 +61,7 @@ export function checkRamp(input: RampInput, thresholds: Ts9111Thresholds | null 
     violations.push(`Genişlik ${fmt(input.widthCm)} cm, en az ${fmt(thresholds.minWidthCm)} cm olmalı.`);
   }
 
-  const riseCm = (input.lengthCm * slope) / 100;
+  const riseCm = input.riseCm ?? (input.lengthCm * slope) / 100;
   const required = thresholds.handrailRules
     .filter((r) => {
       const hasCondition = r.lengthOverCm !== undefined || r.riseOverCm !== undefined;

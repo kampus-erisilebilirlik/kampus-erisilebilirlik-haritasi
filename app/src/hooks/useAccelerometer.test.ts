@@ -43,4 +43,20 @@ describe("useAccelerometer", () => {
     ]);
     now.mockRestore();
   });
+
+  it("sensör susarsa süre dolunca eldeki örneklerle biter", async () => {
+    jest.useFakeTimers();
+    const { result } = await renderHook(() => useAccelerometer());
+    let samples: unknown[] | undefined;
+    await act(async () => {
+      const pending = result.current.record(2000).then((s) => {
+        samples = s;
+      });
+      mockEmit({ x: 0, y: 0, z: 1, timestamp: 1 });
+      jest.advanceTimersByTime(3000);
+      await pending;
+    });
+    expect(samples).toEqual([{ x: 0, y: 0, z: 1 }]);
+    jest.useRealTimers();
+  });
 });
