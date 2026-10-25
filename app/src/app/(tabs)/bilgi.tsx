@@ -1,4 +1,7 @@
+import { Link } from "expo-router";
 import { ScrollView, Switch, View } from "react-native";
+
+import { AppButton } from "@/components/AppButton";
 
 import { AppText } from "@/components/AppText";
 import { useSettingsStore } from "@/store/settings";
@@ -26,6 +29,12 @@ export default function InfoScreen() {
           trackColor={{ true: colors.primary, false: colors.border }}
         />
       </View>
+      {/* Ekip aracı: #5'te yalnızca admin oturumunda gösterilecek */}
+      {__DEV__ && (
+        <Link href="/olcum" asChild>
+          <AppButton label="Eğim ölçer (ekip)" variant="secondary" />
+        </Link>
+      )}
     </ScrollView>
   );
 }
