@@ -52,3 +52,16 @@ Completed: #1 kod kısmı (PR açıldı): config.toml (signup kapalı), view'lar
 Blocked: #1 dashboard adımları elle yapılacak (Supabase projesi Frankfurt/Free, Kaan+Alper Developer daveti, admin kullanıcı + `insert into admins`, `supabase link` + `db push`); #4 için repo secrets `SUPABASE_URL`/`SUPABASE_ANON_KEY` gerekli; #3 → #13'ü bekliyor
 Next: #6 istemci kısmı (`clientToken.ts`) #13 sonrası #26 ile; canlı projeye `db push` → `gen types --linked` ile tipleri doğrula; #4'ü `workflow_dispatch` ile test et; #13 sonrası #3 CI
 Decisions made: v_points açık kolon listesi (ham geography dönmez); storage policy `to authenticated` + `public.is_admin()`; view kolonları üretilen tiplerde nullable — uygulama tarafında non-null assert/Zod ile daraltılmalı; keepalive'da boş commit adımı yok (main korumalı), devre dışı kalma riski README'de
+
+## Handoff — 2026-10-25
+Completed: PR #29, #30, #31 merge edildi (main'de, 28/28 pgTAP geçiyor); #1, #4, #6 açık kaldı (elle yapılacak adımlar), panoda "Devam Ediyor". #13 uygulama iskeleti PR #32 (Kaan reviewer, panoda İncelemede): Expo Router 3 sekme, env (Zod safeParse → hata ekranı), `getSupabase()`, Zustand data store + persist önbellek, tema (geçici token'lar), AppText/AppButton/StatusBadge/SyncStatus, ESLint 9 + Jest; typecheck/lint/test (8/8) temiz, expo-doctor 20/20
+Blocked: #1 dashboard (Supabase projesi, admin, `link` + `db push`), #4 repo secrets; #32 cihaz testi (emülatör yok) ve Kaan onayı
+Next: #32 merge → #3 CI (typecheck/lint/test + EAS), #6 `clientToken.ts`, #22 eğim ölçer; #11 Figma gelince `theme/tokens.ts`
+Decisions made: PR'larda dashboard adımı kalan issue'lar `Refs` ile bağlanır, `Closes` değil; stacked PR'da `gh pr merge --delete-branch` kullanma (bağlı PR kapanır); AppText'te `role` yerine `variant` (RN ARIA `role` ile çakışma); view satırları `lib/schemas.ts` Zod şemalarıyla daraltılır; veri yenilemesi persist hydration bittikten sonra başlar; ESLint 9'da sabit (eslint-plugin-react ESLint 10 desteklemiyor); TS 6 → tsconfig `types: ["jest"]`; testler `src/app/` dışında (route sayılmasın)
+
+## Handoff — 2026-10-25 (2)
+Completed: AI imzası kuralı (`.claude/settings.json` attribution boş + CLAUDE.md/README), #32 geçmişi temizlendi; #3 PR #33 (ci.yml, release.yml, eas.json, expo-dev-client) — GitHub'da CI yeşil; #6 istemci PR #35 (`clientToken.ts` factory + secure-store, `reports.ts` Türkçe hata eşlemesi, 19/19 test)
+Blocked: #33 elle: `eas init` + projectId commit, `eas env:create` (EXPO_PUBLIC_SUPABASE_*), `EXPO_TOKEN` secret, branch koruması (repo public olunca); #22 adım 1-2 Alper'in görevi ve #21 (TS 9111 eşikleri) bekleniyor
+Next: #32 merge → #33/#35 base'ini `main` yap (ikisi de app/package.json + lockfile değiştiriyor, ikincisinde lockfile çakışması `pnpm install` ile çözülür); Alper'in PR #34'ünü (saha planı) incele; #5 yönetici girişi
+Decisions made: stacked PR'lar #32'ye bağlı; base branch silinmeden önce bağlı PR'ların base'i `main`'e çekilir; EAS profilleri `environment` ile EAS ortam değişkenlerini kullanır (env repoya girmez); release notları `.github/release-notes.md`; secure-store `configureAndroidBackup: true`; PostgREST RPC hatası `error.message` = raise edilen kod
+

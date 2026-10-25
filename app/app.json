@@ -10,6 +10,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "tr.edu.selcuk.kampuserisim",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -20,6 +21,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "scheme": "kampuserisim"
   }
 }
