@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="800" viewBox="0 0 360 800" font-family="Roboto, Arial, sans-serif">
+  <title>Basamaksız rota (#25) — wireframe, normal tema</title>
+  <g id="Ekran">
+    <rect id="Zemin" width="360" height="800" fill="#FFFFFF"/>
+    <g id="Baslik">
+      <rect width="360" height="56" fill="#FFFFFF"/>
+      <path d="M16 28 L28 16 M16 28 L28 40 M16 28 L40 28" stroke="#1A1C1E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <text x="56" y="36" font-size="20" font-weight="600" fill="#1A1C1E">Basamaksız rota</text>
+      <line x1="0" y1="56" x2="360" y2="56" stroke="#80868F"/>
+    </g>
+    <g id="Ozet">
+      <text x="16" y="92" font-size="20" font-weight="600" fill="#1A1C1E">Ana giriş rampası</text>
+      <text x="16" y="116" font-size="14" font-weight="600" fill="#4A5058">Basamaksız rota · 320 metre</text>
+      <text x="16" y="138" font-size="14" fill="#4A5058">Başlangıç: konumunuza en yakın yol</text>
+    </g>
+    <g id="Harita">
+      <rect x="0" y="152" width="360" height="300" fill="#F3F5F8"/>
+      <rect x="40" y="180" width="110" height="70" rx="4" fill="#E2E5EA"/>
+      <rect x="210" y="300" width="120" height="90" rx="4" fill="#E2E5EA"/>
+      <text x="52" y="220" font-size="14" fill="#4A5058">Kütüphane</text>
+      <text x="222" y="350" font-size="14" fill="#4A5058">Teknoloji Fak.</text>
+      <polyline id="Rota cizgisi" points="70,420 70,280 180,280 180,330 230,330" fill="none" stroke="#0B57D0" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+      <g id="Baslangic">
+        <circle cx="70" cy="420" r="11" fill="#FFFFFF" stroke="#0B57D0" stroke-width="4"/>
+        <circle cx="70" cy="420" r="4" fill="#0B57D0"/>
+      </g>
+      <g id="Varis">
+        <circle cx="230" cy="330" r="18" fill="#FFFFFF" stroke="#1B6E33" stroke-width="3"/>
+        <path d="M220 338 L240 322" stroke="#1A1C1E" stroke-width="3" stroke-linecap="round"/>
+      </g>
+    </g>
+    <g id="Adimlar">
+      <text x="16" y="486" font-size="20" font-weight="600" fill="#1A1C1E">Adımlar</text>
+      <g id="Adim 1">
+        <circle cx="32" cy="524" r="14" fill="#0B57D0"/>
+        <text x="32" y="529" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+        <text x="56" y="520" font-size="16" fill="#1A1C1E">Bulunduğunuz yerden kuzeye</text>
+        <text x="56" y="542" font-size="14" fill="#4A5058">140 metre, düz yol</text>
+        <line x1="16" y1="558" x2="344" y2="558" stroke="#80868F"/>
+      </g>
+      <g id="Adim 2">
+        <circle cx="32" cy="590" r="14" fill="#0B57D0"/>
+        <text x="32" y="595" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+        <text x="56" y="586" font-size="16" fill="#1A1C1E">Kütüphane önünden sağa</text>
+        <text x="56" y="608" font-size="14" fill="#4A5058">110 metre, kılavuz iz var</text>
+        <line x1="16" y1="624" x2="344" y2="624" stroke="#80868F"/>
+      </g>
+      <g id="Adim 3">
+        <circle cx="32" cy="656" r="14" fill="#0B57D0"/>
+        <text x="32" y="661" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+        <text x="56" y="652" font-size="16" fill="#1A1C1E">Rampadan ana girişe</text>
+        <text x="56" y="674" font-size="14" fill="#4A5058">70 metre, eğim %6,5</text>
+        <line x1="16" y1="690" x2="344" y2="690" stroke="#80868F"/>
+      </g>
+    </g>
+    <g id="Yol tarifi al">
+      <rect x="16" y="712" width="328" height="48" rx="12" fill="#FFFFFF" stroke="#80868F" stroke-width="2"/>
+      <text x="180" y="741" font-size="14" font-weight="600" fill="#1A1C1E" text-anchor="middle">Yol tarifi al (Google Haritalar)</text>
+    </g>
+  </g>
+</svg>
