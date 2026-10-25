@@ -247,13 +247,17 @@ export type Database = {
       points: {
         Row: {
           building_id: string | null
+          code: string | null
           floor: number | null
           has_tactile_paving: boolean | null
           id: string
           location: unknown
           name: string
           photo_path: string | null
+          ramp_handrail_sides: number | null
           ramp_has_handrail: boolean | null
+          ramp_length_cm: number | null
+          ramp_rise_cm: number | null
           ramp_slope_pct: number | null
           ramp_width_cm: number | null
           status: Database["public"]["Enums"]["point_status"]
@@ -264,13 +268,17 @@ export type Database = {
         }
         Insert: {
           building_id?: string | null
+          code?: string | null
           floor?: number | null
           has_tactile_paving?: boolean | null
           id?: string
           location: unknown
           name: string
           photo_path?: string | null
+          ramp_handrail_sides?: number | null
           ramp_has_handrail?: boolean | null
+          ramp_length_cm?: number | null
+          ramp_rise_cm?: number | null
           ramp_slope_pct?: number | null
           ramp_width_cm?: number | null
           status?: Database["public"]["Enums"]["point_status"]
@@ -281,13 +289,17 @@ export type Database = {
         }
         Update: {
           building_id?: string | null
+          code?: string | null
           floor?: number | null
           has_tactile_paving?: boolean | null
           id?: string
           location?: unknown
           name?: string
           photo_path?: string | null
+          ramp_handrail_sides?: number | null
           ramp_has_handrail?: boolean | null
+          ramp_length_cm?: number | null
+          ramp_rise_cm?: number | null
           ramp_slope_pct?: number | null
           ramp_width_cm?: number | null
           status?: Database["public"]["Enums"]["point_status"]
