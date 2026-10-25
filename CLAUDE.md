@@ -58,3 +58,10 @@ Completed: PR #29, #30, #31 merge edildi (main'de, 28/28 pgTAP geçiyor); #1, #4
 Blocked: #1 dashboard (Supabase projesi, admin, `link` + `db push`), #4 repo secrets; #32 cihaz testi (emülatör yok) ve Kaan onayı
 Next: #32 merge → #3 CI (typecheck/lint/test + EAS), #6 `clientToken.ts`, #22 eğim ölçer; #11 Figma gelince `theme/tokens.ts`
 Decisions made: PR'larda dashboard adımı kalan issue'lar `Refs` ile bağlanır, `Closes` değil; stacked PR'da `gh pr merge --delete-branch` kullanma (bağlı PR kapanır); AppText'te `role` yerine `variant` (RN ARIA `role` ile çakışma); view satırları `lib/schemas.ts` Zod şemalarıyla daraltılır; veri yenilemesi persist hydration bittikten sonra başlar; ESLint 9'da sabit (eslint-plugin-react ESLint 10 desteklemiyor); TS 6 → tsconfig `types: ["jest"]`; testler `src/app/` dışında (route sayılmasın)
+
+## Handoff — 2026-10-25 (2)
+Completed: AI imzası kuralı (`.claude/settings.json` attribution boş + CLAUDE.md/README), #32 geçmişi temizlendi; #3 PR #33 (ci.yml, release.yml, eas.json, expo-dev-client) — GitHub'da CI yeşil; #6 istemci PR #35 (`clientToken.ts` factory + secure-store, `reports.ts` Türkçe hata eşlemesi, 19/19 test)
+Blocked: #33 elle: `eas init` + projectId commit, `eas env:create` (EXPO_PUBLIC_SUPABASE_*), `EXPO_TOKEN` secret, branch koruması (repo public olunca); #22 adım 1-2 Alper'in görevi ve #21 (TS 9111 eşikleri) bekleniyor
+Next: #32 merge → #33/#35 base'ini `main` yap (ikisi de app/package.json + lockfile değiştiriyor, ikincisinde lockfile çakışması `pnpm install` ile çözülür); Alper'in PR #34'ünü (saha planı) incele; #5 yönetici girişi
+Decisions made: stacked PR'lar #32'ye bağlı; base branch silinmeden önce bağlı PR'ların base'i `main`'e çekilir; EAS profilleri `environment` ile EAS ortam değişkenlerini kullanır (env repoya girmez); release notları `.github/release-notes.md`; secure-store `configureAndroidBackup: true`; PostgREST RPC hatası `error.message` = raise edilen kod
+
