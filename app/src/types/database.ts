@@ -75,14 +75,14 @@ isOneToOne: false
                   ]
                 },"path_edges": {
                   Row: {
-                    "from_node": string,"geometry": unknown,"id": string,"length_m": number,"to_node": string
+                    "from_node": string,"geometry": unknown,"id": string,"length_m": number,"note": string,"to_node": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "from_node": string,"geometry"?: unknown,"id"?: string,"length_m": number,"to_node": string
+                    "from_node": string,"geometry"?: unknown,"id"?: string,"length_m": number,"note"?: string,"to_node": string
                   }
                   Update: {
-                    "from_node"?: string,"geometry"?: unknown,"id"?: string,"length_m"?: number,"to_node"?: string
+                    "from_node"?: string,"geometry"?: unknown,"id"?: string,"length_m"?: number,"note"?: string,"to_node"?: string
                   }
                   Relationships: [
                     {
@@ -1037,6 +1037,9 @@ isOneToOne: false
                            },
 "st_wrapx":
 { Args: { "geom": unknown,"move": number,"wrap": number }; Returns: unknown
+                           },
+"replace_path_graph":
+{ Args: { "p_edges": Json,"p_nodes": Json }; Returns: undefined
                            },
 "submit_report":
 { Args: { "p_client_token": string,"p_description": string,"p_point_id": string,"p_reported_status": Database["public"]['Enums']["point_status"] }; Returns: undefined

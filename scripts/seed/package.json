@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "seed": "tsx seed.ts",
+    "import-paths": "tsx import-paths.ts",
     "typecheck": "tsc --noEmit",
     "test": "tsx --test src/*.test.ts"
   },
