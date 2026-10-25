@@ -858,6 +858,10 @@ export type Database = {
       }
       postgis_version: { Args: never; Returns: string }
       postgis_wagyu_version: { Args: never; Returns: string }
+      replace_path_graph: {
+        Args: { p_edges: Json; p_nodes: Json }
+        Returns: undefined
+      }
       st_3dclosestpoint: {
         Args: { geom1: unknown; geom2: unknown }
         Returns: unknown
@@ -1438,10 +1442,6 @@ export type Database = {
       st_wrapx: {
         Args: { geom: unknown; move: number; wrap: number }
         Returns: unknown
-      }
-      replace_path_graph: {
-        Args: { p_edges: Json; p_nodes: Json }
-        Returns: undefined
       }
       submit_report: {
         Args: {
