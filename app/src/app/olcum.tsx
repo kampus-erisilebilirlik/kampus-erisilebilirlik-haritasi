@@ -21,7 +21,11 @@ const handrailOptions: { value: Handrail; label: string }[] = [
 ];
 const handrailFormValue: Record<Handrail, string> = { both: "iki tarafta", one: "tek tarafta", none: "yok" };
 
-const fmt = (n: number) => n.toFixed(1);
+// Ekranda Türkçe ondalık (7,8); panoya kopyalanan metin saha formu için noktalı (7.8)
+const fmt = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const formValue = (n: number) => n.toFixed(1);
+// 2 sn × 50 Hz = 100 örnek beklenir; yarısından azı sensörün durduğunu gösterir
+const MIN_SAMPLES = 50;
 const parseCm = (text: string) => {
   const n = Number(text.replace(",", "."));
   return text.trim() !== "" && Number.isFinite(n) && n > 0 ? n : null;
@@ -51,7 +55,7 @@ export default function SlopeMeterScreen() {
   const tapeSlope = riseCm !== null && lengthCm !== null ? riseRunPercent(riseCm, lengthCm) : null;
   const check =
     done && med !== null && lengthCm !== null && widthCm !== null && handrail !== null
-      ? checkRamp({ slopePct: med, lengthCm, widthCm, handrail })
+      ? checkRamp({ slopePct: med, lengthCm, widthCm, handrail, riseCm: riseCm ?? undefined })
       : null;
 
   async function calibrate() {
@@ -59,6 +63,10 @@ export default function SlopeMeterScreen() {
     setMessage("Telefonu düz zemine koyun ve dokunmayın…");
     const samples = await record(RECORD_MS);
     setBusy(null);
+    if (samples.length < MIN_SAMPLES) {
+      setMessage("Sensörden yeterli veri gelmedi, ekran açıkken tekrar deneyin.");
+      return;
+    }
     if (!isSteady(samples)) {
       setMessage("Telefon hareket etti, kalibrasyonu tekrarlayın.");
       return;
@@ -73,6 +81,10 @@ export default function SlopeMeterScreen() {
     setMessage("Ölçülüyor, telefona dokunmayın…");
     const samples = await record(RECORD_MS);
     setBusy(null);
+    if (samples.length < MIN_SAMPLES) {
+      setMessage("Sensörden yeterli veri gelmedi, ekran açıkken tekrar deneyin.");
+      return;
+    }
     if (!isSteady(samples)) {
       setMessage("Telefon hareket etti, tekrar ölçün.");
       return;
@@ -92,7 +104,7 @@ export default function SlopeMeterScreen() {
   }
 
   async function copy() {
-    const lines = results.map((v, i) => `rampa_egim_${i + 1}: ${fmt(v)}`);
+    const lines = results.map((v, i) => `rampa_egim_${i + 1}: ${formValue(v)}`);
     if (riseCm !== null) lines.push(`rampa_yukseklik_cm: ${riseCm}`);
     if (lengthCm !== null) lines.push(`rampa_uzunluk_cm: ${lengthCm}`);
     if (widthCm !== null) lines.push(`rampa_genislik_cm: ${widthCm}`);

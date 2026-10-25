@@ -66,6 +66,11 @@ describe("checkRamp", () => {
       ]);
     });
 
+    it("ölçülen yükselme verilirse hesaplanan yerine o kullanılır", () => {
+      // 500 cm × %3 = 15 cm hesaplanır ama şerit metre 20 cm ölçtü
+      expect(checkRamp({ ...ok, slopePct: 3, handrail: "none", riseCm: 20 }, fake).compliant).toBe(false);
+    });
+
     it("uzun rampada iki taraf gerekir", () => {
       const result = checkRamp({ slopePct: 5, lengthCm: 700, widthCm: 120, handrail: "one" }, fake);
       expect(result.violations).toEqual(["Korkuluk tek tarafta, bu rampada iki tarafta olmalı."]);
