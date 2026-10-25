@@ -99,7 +99,7 @@ Sürüm çıkarmak:
 git tag v0.1.0 && git push origin v0.1.0
 ```
 
-`release.yml` EAS'te production APK'yı üretir ve `kampus-erisilebilirlik-v0.1.0.apk` olarak Releases'a yükler. Ekip içi geliştirme build'i: `pnpm dlx eas-cli@latest build -p android --profile development`.
+`release.yml` EAS'te production APK'yı üretir ve `kampus-erisilebilirlik-v0.1.0.apk` olarak Releases'a yükler. Ekip içi geliştirme build'i: `pnpm dlx eas-cli@latest build -p android --profile development`. Sahada ölçüm yapacak ekip telefonlarına `preview` profili kurulur (`--profile preview`); bu build'de eğim ölçer Bilgi sekmesinde görünür (`EXPO_PUBLIC_TEAM_TOOLS=1`).
 
 ## Çalışma düzeni
 
