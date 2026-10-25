@@ -71,3 +71,9 @@ Blocked: #1 Supabase canlı proje (dashboard), #4 repo secrets, #3 EAS init/env/
 Next: Alper'in #40 (seed) → #39 (yol ağı, #40'a stacked) incelemesi; #41; #21 TS 9111 değerleri
 Decisions made: `Closes` yalnızca PR açıklamasına değil commit mesajına da yazılmaz, elle adımı kalan işte her yerde `Refs`; stacked PR'da base branch silinmeden önce bağlı PR'lar `main`'e retarget edilir (`--delete-branch` bağlı PR'ı kapatır, #31 ve #38'de oldu); ekip araçları `teamToolsEnabled` (`EXPO_PUBLIC_TEAM_TOOLS`, preview profilinde 1)
 
+
+## Handoff — 2026-10-26
+Completed: #41 CI pgTAP (PR #44), Android izin kısıtları (#45), EAS projesi `kampus-erisilebilirlik` org'unda (#46, env'ler 3 ortamda, `EXPO_TOKEN` repo secret'ı robot kullanıcı); ilk preview APK (build `0b6edbb3…`, #42'de link, telefona kuruldu); Kaan'ın #47 (anket), #48 (bilgi/KVKK), #49 (harita) ve Alper'in #40 (seed) + #39 (yol ağı) PR'ları merge edildi; seed paketine pnpm 11 `allowBuilds` eklendi; `database.ts` canlıdan yeniden üretildi (yalnızca sıra farkı). main'de app 73/73, seed 22/22
+Blocked: Google Maps anahtarı (Sadık, Google Cloud → EAS `GOOGLE_MAPS_API_KEY` sensitive, preview + production); yok iken harita altlığı boş; #42 cihaz testi sonuçları; Alper Supabase daveti (#1), Kaan/Alper Expo org daveti; repo public + branch koruması (#3)
+Next: Kaan'ın 15→16→17→18 zinciri (14 merge edildi, branch'i silindi: 15 artık doğrudan `main`'e PR açılır); anahtar gelince haritalı ikinci preview build; #5 yönetici, #26 sorun bildir, #25 Dijkstra
+Decisions made: Supabase GitHub entegrasyonu `main`'e merge edilen migration'ları canlıya kendisi uyguluyor (#40/#39'da oldu) — migration içeren PR'ın merge'ü = canlıya deploy, merge öncesi CI db job'ı yeşil olmalı; Android imza SHA-1 `F9:8D:95:8B:38:2D:2E:70:CB:30:F6:FA:ED:80:7E:9F:F4:37:F7:9F` (EAS remote keystore, preview ve production aynı); Android'de yüksek kontrast harita için `customMapStyle` gerekli (`userInterfaceStyle` yalnızca iOS)
