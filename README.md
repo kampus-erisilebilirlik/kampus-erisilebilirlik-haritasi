@@ -76,6 +76,31 @@ pnpm dlx supabase gen types typescript --linked > app/src/types/database.ts
 
 `service_role` key uygulamaya veya repoya asla girmez.
 
+## Sürüm (APK) yayınlama
+
+Uygulama GitHub Releases'tan APK olarak dağıtılır. Her PR'da `.github/workflows/ci.yml` typecheck, lint ve testleri çalıştırır; EAS build yalnızca sürümde alınır (ücretsiz plan kotası sınırlı).
+
+Bir kerelik kurulum:
+
+```bash
+cd app
+pnpm dlx eas-cli@latest login
+pnpm dlx eas-cli@latest init            # app.json'a extra.eas.projectId ekler, commit edin
+# Uygulamanın derleme anında okuduğu public değerler (her ortam için)
+pnpm dlx eas-cli@latest env:create --environment production --name EXPO_PUBLIC_SUPABASE_URL --value https://<ref>.supabase.co --visibility plaintext
+pnpm dlx eas-cli@latest env:create --environment production --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value <anon-key> --visibility plaintext
+```
+
+Repo secrets: `EXPO_TOKEN` (expo.dev → Access tokens).
+
+Sürüm çıkarmak:
+
+```bash
+git tag v0.1.0 && git push origin v0.1.0
+```
+
+`release.yml` EAS'te production APK'yı üretir ve `kampus-erisilebilirlik-v0.1.0.apk` olarak Releases'a yükler. Ekip içi geliştirme build'i: `pnpm dlx eas-cli@latest build -p android --profile development`. Sahada ölçüm yapacak ekip telefonlarına `preview` profili kurulur (`--profile preview`); bu build'de eğim ölçer Bilgi sekmesinde görünür (`EXPO_PUBLIC_TEAM_TOOLS=1`).
+
 ## Çalışma düzeni
 
 - Her iş bir issue; branch adı `<issue-no>-kisa-aciklama` (ör. `12-harita-ekrani`)
