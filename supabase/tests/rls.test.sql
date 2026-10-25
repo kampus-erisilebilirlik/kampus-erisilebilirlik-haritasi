@@ -2,7 +2,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 
-select plan(17);
+select plan(18);
 
 -- Test verisi (postgres rolüyle, RLS dışı)
 insert into buildings (id, slug, name, location)
@@ -39,8 +39,13 @@ select throws_ok(
 );
 
 select lives_ok(
+  $$select submit_report('00000000-0000-0000-0000-0000000000a1', 'broken', 'rampa kırık', gen_random_uuid())$$,
+  'anon: submit_report ile bildirim başarılı'
+);
+
+select throws_ok(
   $$insert into issue_reports (point_id, description) values ('00000000-0000-0000-0000-0000000000a1', 'rampa kırık')$$,
-  'anon: issue_reports insert başarılı'
+  '42501', null, 'anon: issue_reports doğrudan insert reddedilir'
 );
 
 select throws_ok(
