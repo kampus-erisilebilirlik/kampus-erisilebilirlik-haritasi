@@ -65,6 +65,13 @@ pnpm dlx supabase gen types typescript --linked > app/src/types/database.ts
 - `main`'e doğrudan push yok, PR + en az bir ekip arkadaşının onayı
 - Commit mesajları: `feat:`, `fix:`, `docs:`, `chore:` önekleri
 
+## Supabase keepalive
+
+Supabase Free plan, 7 gün istek almayan projeyi duraklatır. `.github/workflows/supabase-keepalive.yml` Pazartesi ve Perşembe 09:00'da REST API'ye istek atar (repo secrets: `SUPABASE_URL`, `SUPABASE_ANON_KEY`).
+
+- İstek başarısız olursa workflow kırmızı olur ve repo sahibine e-posta gider.
+- GitHub, 60 gün commit almayan repolarda zamanlanmış workflow'ları devre dışı bırakır. Actions sekmesinde "workflow disabled" uyarısı görülürse **Enable workflow**'a basın.
+
 ## Gizlilik
 
 Uygulama üyelik istemez, kişisel veri toplamaz. Konum yalnızca cihazda kullanılır, sunucuya gönderilmez. Sorun bildirimleri anonimdir.
