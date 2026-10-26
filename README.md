@@ -110,6 +110,7 @@ git tag v0.1.0 && git push origin v0.1.0
 - Her iş bir issue; branch adı `<issue-no>-kisa-aciklama` (ör. `12-harita-ekrani`)
 - `main`'e doğrudan push yok, PR + en az bir ekip arkadaşının onayı
 - Commit mesajları: `feat:`, `fix:`, `docs:`, `chore:` önekleri
+- PR, issue'nun kod kısmını bitiriyorsa açıklamaya `Closes #N`; kalan elle yapılacak adımlar ilgili issue'ya checklist ya da yeni issue olur. İş bitmiyorsa (parçası ya da asıl iş kod dışı) `Refs #N`. `Closes` commit mesajına yazılmaz
 - Commit, PR ve yorumlara AI aracı imzası eklenmez (`Co-Authored-By: Claude`, "Generated with …" vb.). Claude Code için `.claude/settings.json` bunu kapatır.
 
 ## Supabase keepalive
