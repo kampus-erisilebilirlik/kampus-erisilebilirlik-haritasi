@@ -10,6 +10,9 @@ import { getSupabase } from "@/lib/supabase";
 import { useDataStore } from "@/store/data";
 import { ThemeProvider, useTheme } from "@/theme/ThemeProvider";
 
+// QR/deep link ile doğrudan bina veya nokta açılırsa geri tuşu sekmelere döner
+export const unstable_settings = { anchor: "(tabs)" };
+
 function EnvError({ message }: { message: string }) {
   const { colors, spacing } = useTheme();
   return (

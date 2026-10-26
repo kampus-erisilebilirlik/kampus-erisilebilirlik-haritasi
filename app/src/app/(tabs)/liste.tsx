@@ -1,6 +1,8 @@
+import { Link } from "expo-router";
 import { useMemo } from "react";
 import { SectionList, View } from "react-native";
 
+import { AppButton } from "@/components/AppButton";
 import { AppText } from "@/components/AppText";
 import { PointRow } from "@/components/PointRow";
 import { ScoreBadge } from "@/components/ScoreBadge";
@@ -39,10 +41,25 @@ export default function ListScreen() {
 
 function SectionHeader({ section }: { section: BuildingSection }) {
   const { spacing } = useTheme();
+  const { building } = section;
+  if (!building) {
+    return (
+      <View style={{ paddingTop: spacing.md }}>
+        <AppText variant="title">Bina dışı noktalar</AppText>
+      </View>
+    );
+  }
   return (
     <View style={{ gap: spacing.xs, paddingTop: spacing.md }}>
-      <AppText variant="title">{section.building?.name ?? "Bina dışı noktalar"}</AppText>
-      {section.building && <ScoreBadge score={section.building.score} />}
+      <AppText variant="title">{building.name}</AppText>
+      <ScoreBadge score={building.score} />
+      <Link href={{ pathname: "/bina/[slug]", params: { slug: building.slug } }} asChild>
+        <AppButton
+          label="Bina sayfasını aç"
+          variant="secondary"
+          accessibilityLabel={`${building.name}: Bina sayfasını aç`}
+        />
+      </Link>
     </View>
   );
 }

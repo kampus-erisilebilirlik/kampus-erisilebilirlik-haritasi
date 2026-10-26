@@ -20,3 +20,20 @@ export const accessScoreLabel: Record<AccessScore, string> = {
   red: "Erişilebilir değil",
   unknown: "Henüz ölçülmedi",
 };
+
+// Bina sayfasında grup başlığı: "Asansörler (2)"
+export const pointTypePluralLabel: Record<PointType, string> = {
+  ramp: "Rampalar",
+  elevator: "Asansörler",
+  toilet: "Engelli tuvaletleri",
+  parking: "Engelli otoparkları",
+  auto_door: "Otomatik kapılar",
+};
+
+// Puan kuralı (docs/saha/puanlama.md); puan veri girişinde hesaplanır, uygulama yalnızca açıklar
+export const accessScoreRule: Record<AccessScore, string> = {
+  green: "Basamaksız giriş var, bina çok katlıysa çalışan asansör var ve çalışan engelli tuvaleti var.",
+  yellow: "Basamaksız giriş var, ama asansör veya engelli tuvaletinden biri eksik ya da arızalı.",
+  red: "Basamaksız giriş yok.",
+  unknown: "Bu bina için henüz saha ölçümü yapılmadı.",
+};

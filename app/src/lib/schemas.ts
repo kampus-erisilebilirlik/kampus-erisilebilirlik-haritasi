@@ -33,6 +33,10 @@ export const pointSchema = z.object({
   has_tactile_paving: z.boolean().nullable(),
   ts9111_compliant: z.boolean().nullable(),
   updated_at: z.string(),
+  // Şerit metre ölçümleri (#23); v_points'e eklenince TS 9111 ihlal metni için okunur, yokken undefined
+  ramp_length_cm: z.number().nullable().optional(),
+  ramp_rise_cm: z.number().nullable().optional(),
+  ramp_handrail_sides: z.number().nullable().optional(),
 });
 
 export const pathNodeSchema = z.object({
