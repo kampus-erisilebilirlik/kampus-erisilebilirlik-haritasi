@@ -1,6 +1,6 @@
 import type { AccessScore, PointStatus } from "@/lib/schemas";
 
-// Geçici değerler: Figma (#11) tamamlanınca güncellenecek. Tüm metin/zemin çiftleri WCAG AA (4.5:1),
+// Renk ve ölçülerin tek kaynağı, tasarım rehberi (#11) buradan okur. Tüm metin/zemin çiftleri WCAG AA (4.5:1),
 // kenarlık (anahtarın kapalı izi, çip ve düğme sınırı) 3:1 (WCAG 1.4.11) üstünde; tokens.test.ts denetler
 export type Palette = {
   background: string;
