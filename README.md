@@ -48,7 +48,7 @@ Lokal Supabase ile çalışırken `EXPO_PUBLIC_SUPABASE_URL` olarak bilgisayarı
 
 Eksik veya hatalı env ile uygulama açılışta "Yapılandırma hatası" ekranı gösterir.
 
-Android'de harita için `.env.local` içine `GOOGLE_MAPS_API_KEY` yazılır (Google Cloud → Maps SDK for Android; anahtar `tr.edu.selcuk.kampuserisim` paketi ve imza SHA-1'i ile kısıtlanır). Anahtar `app.config.ts` ile yalnızca derlemede okunur, repoya girmez; EAS build'de aynı adla EAS ortam değişkeni olarak tanımlanır (`--visibility sensitive`). Anahtar yoksa uygulama açılır ama harita altlığı boş görünür.
+Android'de harita için `.env.local` içine `GOOGLE_MAPS_API_KEY` yazılır (Google Cloud → Maps SDK for Android; anahtar `tr.edu.selcuk.kampuserisim` paketi ve imza SHA-1'i ile kısıtlanır). Anahtar `app.config.ts` ile yalnızca derlemede okunur, repoya girmez; EAS build'de aynı adla EAS ortam değişkeni olarak tanımlanır (`--visibility sensitive`). Anahtar yoksa Android'de harita ekranı açılışta çöker ("API key not found"); EAS build anahtarsız başlamaz.
 
 ### Kontroller
 
