@@ -34,3 +34,7 @@ Kural bir binada gerçeği yansıtmıyorsa (ör. asansör var ama yalnızca bir 
 - [ ] Sadık
 - [ ] Kaan
 - [ ] Alper
+
+## Henüz ölçülmemiş bina
+
+Sahada ölçülmemiş bina `unknown` puanıyla, "Henüz ölçülmedi" etiketi ve gri soru işaretiyle gösterilir. Ölçülmemiş binaya renk verilmez: yeşil, sarı veya kırmızı kullanıcıyı yanıltır. Seed script'i bina ölçüldüğünde puanı kurala göre hesaplayıp `unknown`'ın yerine yazar.

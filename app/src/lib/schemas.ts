@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // View kolonları üretilen tiplerde nullable gelir; burada gerçek (NOT NULL) şekle daraltılır
-export const accessScoreSchema = z.enum(["green", "yellow", "red"]);
+export const accessScoreSchema = z.enum(["green", "yellow", "red", "unknown"]);
 export const pointStatusSchema = z.enum(["working", "broken", "unknown"]);
 export const pointTypeSchema = z.enum(["ramp", "elevator", "toilet", "parking", "auto_door"]);
 

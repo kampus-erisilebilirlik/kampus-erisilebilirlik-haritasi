@@ -18,4 +18,5 @@ export const accessScoreLabel: Record<AccessScore, string> = {
   green: "Erişilebilir",
   yellow: "Kısmen erişilebilir",
   red: "Erişilebilir değil",
+  unknown: "Henüz ölçülmedi",
 };

@@ -24,7 +24,7 @@ const normal: Palette = {
   border: "#C4C7CC",
   focus: "#0B57D0",
   status: { working: "#1B6E33", broken: "#B3261E", unknown: "#4A5058" },
-  score: { green: "#1B6E33", yellow: "#8A5300", red: "#B3261E" },
+  score: { green: "#1B6E33", yellow: "#8A5300", red: "#B3261E", unknown: "#4A5058" },
 };
 
 const highContrast: Palette = {
@@ -37,7 +37,7 @@ const highContrast: Palette = {
   border: "#FFFFFF",
   focus: "#FFD60A",
   status: { working: "#5CE08A", broken: "#FF8A80", unknown: "#E0E0E0" },
-  score: { green: "#5CE08A", yellow: "#FFD60A", red: "#FF8A80" },
+  score: { green: "#5CE08A", yellow: "#FFD60A", red: "#FF8A80", unknown: "#E0E0E0" },
 };
 
 export const palettes = { normal, highContrast };
