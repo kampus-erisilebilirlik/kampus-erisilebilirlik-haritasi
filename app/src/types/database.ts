@@ -1465,7 +1465,7 @@ export type Database = {
       }
     }
     Enums: {
-      access_score: "green" | "yellow" | "red"
+      access_score: "green" | "yellow" | "red" | "unknown"
       point_status: "working" | "broken" | "unknown"
       point_type: "ramp" | "elevator" | "toilet" | "parking" | "auto_door"
       report_status: "pending" | "approved" | "rejected"
@@ -1607,7 +1607,7 @@ export const Constants = {
   },
   public: {
     Enums: {
-      access_score: ["green", "yellow", "red"],
+      access_score: ["green", "yellow", "red", "unknown"],
       point_status: ["working", "broken", "unknown"],
       point_type: ["ramp", "elevator", "toilet", "parking", "auto_door"],
       report_status: ["pending", "approved", "rejected"],

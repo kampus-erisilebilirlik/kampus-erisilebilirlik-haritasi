@@ -21,4 +21,5 @@ export const accessScoreIcon: Record<AccessScore, IoniconName> = {
   green: "checkmark-circle",
   yellow: "alert-circle",
   red: "close-circle",
+  unknown: "help-circle",
 };
