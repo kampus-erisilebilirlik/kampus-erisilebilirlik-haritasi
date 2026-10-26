@@ -1,4 +1,5 @@
 Closes #
+<!-- İş bitmiyorsa (parçası ya da asıl iş kod dışı) Closes yerine Refs. Kalan elle adımları ilgili issue'ya checklist olarak taşıyın -->
 
 ## Ne değişti
 

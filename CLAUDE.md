@@ -4,6 +4,7 @@ Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Tekl
 
 ## Kurallar (tüm ekip ve AI araçları için)
 - Commit, PR, issue ve yorumlarda AI aracı kendini eklemez: `Co-Authored-By: Claude`, "Generated with Claude Code", oturum linki veya benzeri imza/collaborator satırı yok. Repo `.claude/settings.json` (`attribution` boş) bunu Claude Code için zorlar; başka araç kullanan da aynı kurala uyar.
+- Issue bağlama: PR issue'nun kod kısmını bitiriyorsa açıklamada `Closes #N` (merge'de issue kapanır, pano Tamamlandı'ya geçer). Kalan elle adımlar (dashboard, teyit, onay) ilgili başka issue'ya checklist olarak taşınır ya da yeni issue açılır. `Refs #N` yalnızca issue'nun asıl işi kod dışıysa (saha toplama, anket uygulaması) ya da PR işin bir parçasıysa kullanılır. Commit mesajına `Closes` yazılmaz, yalnızca PR açıklamasına (2026-10-26, önceki "her yerde Refs" kararının yerine)
 
 ## Plan
 
