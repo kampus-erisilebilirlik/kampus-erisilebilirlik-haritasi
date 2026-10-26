@@ -24,8 +24,8 @@ const handrailFormValue: Record<Handrail, string> = { both: "iki tarafta", one: 
 // Ekranda Türkçe ondalık (7,8); panoya kopyalanan metin saha formu için noktalı (7.8)
 const fmt = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const formValue = (n: number) => n.toFixed(1);
-// 2 sn × 50 Hz = 100 örnek beklenir; yarısından azı sensörün durduğunu gösterir
-const MIN_SAMPLES = 50;
+// 2 sn içinde en az 10 örnek toplanmalı (farklı Android cihazların 10-50 Hz arası örnekleme hızlarına uyumlu)
+const MIN_SAMPLES = 10;
 const parseCm = (text: string) => {
   const n = Number(text.replace(",", "."));
   return text.trim() !== "" && Number.isFinite(n) && n > 0 ? n : null;
@@ -64,7 +64,7 @@ export default function SlopeMeterScreen() {
     const samples = await record(RECORD_MS);
     setBusy(null);
     if (samples.length < MIN_SAMPLES) {
-      setMessage("Sensörden yeterli veri gelmedi, ekran açıkken tekrar deneyin.");
+      setMessage(`Sensörden yeterli veri gelmedi (${samples.length}/${MIN_SAMPLES}), ekran açıkken tekrar deneyin.`);
       return;
     }
     if (!isSteady(samples)) {
@@ -82,7 +82,7 @@ export default function SlopeMeterScreen() {
     const samples = await record(RECORD_MS);
     setBusy(null);
     if (samples.length < MIN_SAMPLES) {
-      setMessage("Sensörden yeterli veri gelmedi, ekran açıkken tekrar deneyin.");
+      setMessage(`Sensörden yeterli veri gelmedi (${samples.length}/${MIN_SAMPLES}), ekran açıkken tekrar deneyin.`);
       return;
     }
     if (!isSteady(samples)) {
