@@ -7,6 +7,7 @@ import MapView, { Marker, PROVIDER_GOOGLE, type LatLng } from "react-native-maps
 import { accessScoreIcon, pointTypeIcon } from "@/lib/icons";
 import { accessScoreLabel, pointStatusLabel, pointTypeLabel } from "@/lib/labels";
 import { CAMPUS_REGION, toLatLng, type MapSelection } from "@/lib/campus";
+import { highContrastMapStyle } from "@/lib/mapStyle";
 import { floorLabel, pointA11yLabel } from "@/lib/points";
 import type { Building, Point } from "@/lib/schemas";
 import { useTheme } from "@/theme/ThemeProvider";
@@ -69,6 +70,7 @@ export function CampusMap({ ref, buildings, points, selection, onSelect, showsUs
       provider={Platform.OS === "android" ? PROVIDER_GOOGLE : undefined}
       initialRegion={CAMPUS_REGION}
       userInterfaceStyle={theme.highContrast ? "dark" : "light"}
+      customMapStyle={theme.highContrast ? highContrastMapStyle : []}
       onMapReady={() => setReady(true)}
       onPress={() => onSelect(null)}
       showsUserLocation={showsUserLocation}

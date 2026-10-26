@@ -1,6 +1,7 @@
 import type { AccessScore, PointStatus } from "@/lib/schemas";
 
-// Geçici değerler: Figma (#11) tamamlanınca güncellenecek. Tüm metin/zemin çiftleri WCAG AA (4.5:1) üstünde
+// Geçici değerler: Figma (#11) tamamlanınca güncellenecek. Tüm metin/zemin çiftleri WCAG AA (4.5:1),
+// kenarlık (anahtarın kapalı izi, çip ve düğme sınırı) 3:1 (WCAG 1.4.11) üstünde; tokens.test.ts denetler
 export type Palette = {
   background: string;
   surface: string;
@@ -21,7 +22,7 @@ const normal: Palette = {
   textMuted: "#4A5058",
   primary: "#0B57D0",
   onPrimary: "#FFFFFF",
-  border: "#C4C7CC",
+  border: "#80868F",
   focus: "#0B57D0",
   status: { working: "#1B6E33", broken: "#B3261E", unknown: "#4A5058" },
   score: { green: "#1B6E33", yellow: "#8A5300", red: "#B3261E", unknown: "#4A5058" },
