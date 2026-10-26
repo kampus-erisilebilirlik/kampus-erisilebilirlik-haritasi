@@ -26,6 +26,8 @@ web/          GitHub Pages: QR hedef sayfası (bina özeti + APK indirme)
 docs/         Proje teklif formu, saha veri formu, ölçüm yöntemi, raporlar
 ```
 
+Ekran tasarımları ayrı bir araçta değil repoda: [tasarım rehberi](docs/tasarim/tasarim-rehberi.md) (kurallar, renkler, bileşenler, ekranlar) ve [ekran taslakları](docs/tasarim/ekranlar).
+
 ## Geliştirme
 
 ### Ortam kurulumu

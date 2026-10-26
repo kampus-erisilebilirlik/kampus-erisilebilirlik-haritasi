@@ -18,7 +18,7 @@
       <rect x="40" y="180" width="110" height="70" rx="4" fill="#E2E5EA"/>
       <rect x="210" y="300" width="120" height="90" rx="4" fill="#E2E5EA"/>
       <text x="52" y="220" font-size="14" fill="#4A5058">Kütüphane</text>
-      <text x="222" y="350" font-size="14" fill="#4A5058">Teknoloji Fak.</text>
+      <text x="222" y="380" font-size="14" fill="#4A5058">Teknoloji Fak.</text>
       <polyline id="Rota cizgisi" points="70,420 70,280 180,280 180,330 230,330" fill="none" stroke="#0B57D0" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
       <g id="Baslangic">
         <circle cx="70" cy="420" r="11" fill="#FFFFFF" stroke="#0B57D0" stroke-width="4"/>
