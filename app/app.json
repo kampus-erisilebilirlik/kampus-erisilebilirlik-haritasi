@@ -36,6 +36,14 @@
         {
           "configureAndroidBackup": true
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraProguardRules": "-keep class * extends androidx.room.RoomDatabase { <init>(); }"
+          }
+        }
       ]
     ],
     "scheme": "kampuserisim",
