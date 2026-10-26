@@ -2,7 +2,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Link } from "expo-router";
 import { Pressable, View } from "react-native";
 
-import { formatNumber } from "@/lib/format";
+import { formatDistance, formatNumber } from "@/lib/format";
 import { pointTypeIcon } from "@/lib/icons";
 import { pointA11yLabel, pointSubtitle } from "@/lib/points";
 import type { Point } from "@/lib/schemas";
@@ -11,15 +11,17 @@ import { useTheme } from "@/theme/ThemeProvider";
 import { AppText } from "./AppText";
 import { StatusBadge } from "./StatusBadge";
 
-// Nokta detayına giden liste satırı: tür simgesi, ad, tür · bina · kat ve durum; ekran okuyucu satırı tek parça okur
-export function PointRow({ point }: { point: Point }) {
+// Nokta detayına giden liste satırı: tür simgesi, ad, tür · bina · kat, durum ve (konum varsa) mesafe;
+// ekran okuyucu satırı tek parça okur
+export function PointRow({ point, distance }: { point: Point; distance?: number }) {
   const { colors, spacing, radius } = useTheme();
   const buildingName = useDataStore((s) => s.buildings.find((b) => b.id === point.building_id)?.name);
+  const label = pointA11yLabel(point, buildingName);
   return (
     <Link href={{ pathname: "/nokta/[id]", params: { id: point.id } }} asChild>
       <Pressable
         accessibilityRole="link"
-        accessibilityLabel={pointA11yLabel(point, buildingName)}
+        accessibilityLabel={distance === undefined ? label : `${label}, ${formatDistance(distance)}`}
         accessibilityHint="Ayrıntıları açar"
         style={({ pressed }) => ({
           flexDirection: "row",
@@ -63,6 +65,7 @@ export function PointRow({ point }: { point: Point }) {
             )}
           </View>
         </View>
+        {distance !== undefined && <AppText variant="label">{formatDistance(distance, true)}</AppText>}
         <MaterialCommunityIcons name="chevron-right" size={28} color={colors.textMuted} />
       </Pressable>
     </Link>

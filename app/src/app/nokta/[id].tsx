@@ -3,6 +3,7 @@ import { Link, Stack, useLocalSearchParams } from "expo-router";
 import { Pressable, ScrollView, View } from "react-native";
 
 import { AppText } from "@/components/AppText";
+import { DirectionsButton } from "@/components/DirectionsButton";
 import { InfoRow } from "@/components/InfoRow";
 import { PointPhoto } from "@/components/PointPhoto";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -87,6 +88,9 @@ export default function PointScreen() {
           point.has_tactile_paving === null ? "Bilinmiyor" : point.has_tactile_paving ? "Girişten itibaren var" : "Yok"
         }
       />
+
+      {/* Eylemler: "Merdivensiz rota" #25, "Sorun bildir" #26 ile buraya eklenir */}
+      <DirectionsButton lat={point.lat} lng={point.lng} />
     </ScrollView>
   );
 }

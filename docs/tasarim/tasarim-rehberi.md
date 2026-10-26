@@ -9,12 +9,6 @@ Kaynaklar:
 - [`tokens.test.ts`](../../app/src/theme/tokens.test.ts) yeni renklerin kontrastını CI'da denetler: metin ≥4.5:1, kenarlık ≥3:1.
 - Erişilebilirlik kuralları ve test protokolü: [`docs/erisilebilirlik/denetim.md`](../erisilebilirlik/denetim.md).
 
-Rehber, açık PR'lar birleştikten sonraki durumu anlatır. Harita, liste ve bilgi ekranı `main`'de. Henüz açık olanlar:
-- Kenarlık rengi #80868F, `tokens.test.ts` ve denetim belgesi: #57 (#18)
-- Nokta ve bina detayı: #55 (#15)
-- Filtre: #56 (#16)
-- "Bana en yakın": #17
-
 ## Temel kurallar
 
 Kurallar teklif formunun "Kullanıcıya uygunluk" bölümünden gelir.

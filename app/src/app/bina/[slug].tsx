@@ -4,6 +4,7 @@ import { ScrollView, View } from "react-native";
 
 import { AppButton } from "@/components/AppButton";
 import { AppText } from "@/components/AppText";
+import { DirectionsButton } from "@/components/DirectionsButton";
 import { InfoRow } from "@/components/InfoRow";
 import { PointRow } from "@/components/PointRow";
 import { ScoreBadge } from "@/components/ScoreBadge";
@@ -56,6 +57,7 @@ export default function BuildingScreen() {
       <ScoreBadge score={building.score} large />
       {building.summary !== "" && <AppText>{building.summary}</AppText>}
       <ScoreExplanation current={building.score} />
+      <DirectionsButton lat={building.lat} lng={building.lng} />
 
       <View>
         {groups.map(({ type, points: group }) => {

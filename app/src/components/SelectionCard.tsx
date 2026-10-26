@@ -13,6 +13,7 @@ import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
 import { AppButton } from "./AppButton";
 import { AppText } from "./AppText";
+import { DirectionsButton } from "./DirectionsButton";
 import { ScoreBadge } from "./ScoreBadge";
 import { StatusBadge } from "./StatusBadge";
 
@@ -105,6 +106,7 @@ function BuildingSummary({ building }: { building: Building }) {
       <Link href={{ pathname: "/bina/[slug]", params: { slug: building.slug } }} asChild>
         <AppButton label="Bina sayfasını aç" />
       </Link>
+      <DirectionsButton lat={building.lat} lng={building.lng} />
     </>
   );
 }
@@ -143,6 +145,7 @@ function PointSummary({ point }: { point: Point }) {
       <Link href={{ pathname: "/nokta/[id]", params: { id: point.id } }} asChild>
         <AppButton label="Detayı aç" />
       </Link>
+      <DirectionsButton lat={point.lat} lng={point.lng} />
     </>
   );
 }
