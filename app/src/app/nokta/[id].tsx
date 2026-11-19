@@ -2,6 +2,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Link, Stack, useLocalSearchParams } from "expo-router";
 import { Pressable, ScrollView, View } from "react-native";
 
+import { AppButton } from "@/components/AppButton";
 import { AppText } from "@/components/AppText";
 import { InfoRow } from "@/components/InfoRow";
 import { PointPhoto } from "@/components/PointPhoto";
@@ -87,6 +88,8 @@ export default function PointScreen() {
           point.has_tactile_paving === null ? "Bilinmiyor" : point.has_tactile_paving ? "Girişten itibaren var" : "Yok"
         }
       />
+
+      <ReportLinks point={point} />
     </ScrollView>
   );
 }
@@ -115,6 +118,23 @@ function BuildingLink({ building }: { building: Building }) {
         <MaterialCommunityIcons name="chevron-right" size={24} color={colors.primary} />
       </Pressable>
     </Link>
+  );
+}
+
+// Sorun bildir (#26); arızalı görünen noktada düzeldiğini bildirmek için ikinci düğme
+function ReportLinks({ point }: { point: Point }) {
+  const { spacing } = useTheme();
+  return (
+    <View style={{ gap: spacing.sm }}>
+      <Link href={{ pathname: "/bildir/[pointId]", params: { pointId: point.id } }} asChild>
+        <AppButton label="Sorun bildir" variant="secondary" accessibilityHint="Anonim bildirim formunu açar" />
+      </Link>
+      {point.status === "broken" && (
+        <Link href={{ pathname: "/bildir/[pointId]", params: { pointId: point.id, durum: "working" } }} asChild>
+          <AppButton label="Bu nokta düzeldi mi? Bildirin" variant="secondary" />
+        </Link>
+      )}
+    </View>
   );
 }
 

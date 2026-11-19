@@ -58,6 +58,7 @@ function AppStack() {
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="olcum" options={{ title: "Eğim ölçer" }} />
+        <Stack.Screen name="bildir/[pointId]" options={{ title: "Sorun bildir" }} />
       </Stack>
     </View>
   );

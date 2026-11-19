@@ -109,7 +109,8 @@ Bu durumlar uyarı rengiyle değil, metin ve düğmeyle anlatılır; canlı böl
 |---|---|---|---|
 | Harita | `(tabs)/index` | #14, #16, #17 | Filtre çipleri → sonuç sayısı → "Bana en yakın" (tür seçimi, en yakın 3 sonuç) → (izin/konum uyarısı) → harita → seçim kartı |
 | Liste | `(tabs)/liste` | #14, #16 | Filtre → bina başlığı (ad, puan, "Bina sayfasını aç") → nokta satırları; en sonda "Bina dışı noktalar". Boşsa "Bu filtreye uygun nokta yok" + "Filtreleri temizle" |
-| Nokta detayı | `nokta/[id]` | #15 | Fotoğraf → tür, ad, bina bağlantısı, kat → durum + son güncelleme → rampa ölçümleri + TS 9111 uyarısı → sözlü tarif → kılavuz iz → eylemler (yol tarifi #17, rota #25, sorun bildir #26) |
+| Nokta detayı | `nokta/[id]` | #15 | Fotoğraf → tür, ad, bina bağlantısı, kat → durum + son güncelleme → rampa ölçümleri + TS 9111 uyarısı → sözlü tarif → kılavuz iz → eylemler (yol tarifi #17, rota #25, "Sorun bildir" ve arızalıysa "Bu nokta düzeldi mi? Bildirin" #26) |
+| Sorun bildir | `bildir/[pointId]` | #26 | Başlık "Sorun bildir: {nokta}" → "Ne oldu?" radyo grubu (Çalışmıyor / arızalı · Çalışıyor ya da Tekrar çalışıyor · Bilgi yanlış) → açıklama + "0 / 500" sayacı + kişisel bilgi uyarısı → (hata kutusu) → Gönder / Tekrar dene → anonimlik notu. Başarıda sonuç kutusu + "Noktaya dön". Nokta detayındaki "Sorun bildir" ile açılır, ön seçim "arızalı"; arızalı noktadaki "Bu nokta düzeldi mi? Bildirin" ile "çalışıyor". "Bilgi yanlış"ta açıklama zorunlu |
 | Bina sayfası (QR hedefi) | `bina/[slug]` | #15 | Büyük puan → özet → "Puan nasıl belirlenir?" → türe göre sayılar (bulunmayan tür dahil) → türe göre gruplu liste |
 | Bilgi | `(tabs)/bilgi` | #19 | Birim (ara, e-posta, haritada göster) → hizmetler → haklar → uygulama hakkında → gizlilik özeti → Görünüm (yüksek kontrast) → sürüm |
 | KVKK aydınlatma metni | `kvkk` | #19 | Başlıklı bölümler |
@@ -137,14 +138,6 @@ Taslaklar [`ekranlar/`](ekranlar) klasöründe SVG olarak durur; tarayıcıda a�
 - Altında numaralı adım listesi (`path_edges.note`): "1. Kütüphane girişinden sağa, 40 metre, rampa". Liste ekran okuyucunun ana yoludur.
 - **Rota yoksa:** "Bu noktaya kayıtlı basamaksız rota yok" mesajı ve "Yol tarifi al" (Google Haritalar) yedeği.
 - **%200 yazıda:** başlık ve özet birden çok satıra kırılır. Harita alanı ekran yüksekliğinin en fazla %40'ı olur. Adım listesi ve "Yol tarifi al" düğmesi sayfayla birlikte kayar. Adım numarası daireleri yazıyla birlikte büyür.
-
-**Sorun bildir (#26):** [`ekranlar/sorun-bildir.svg`](ekranlar/sorun-bildir.svg), [yüksek kontrast](ekranlar/sorun-bildir-yuksek-kontrast.svg)
-- Nokta detayındaki "Sorun bildir" düğmesiyle açılır; nokta önceden seçilidir.
-- Durum seçimi radyo grubu: Arızalı / Çalışıyor / Bilmiyorum; varsayılan "Arızalı".
-- Açıklama en fazla 500 karakter; sayaç ("120 / 500") canlı bölge. Altında uyarı: "Kişisel bilgi yazmayın."
-- "Gönder" birincil düğme; gönderilirken meşgul durumda.
-- **Sonuç:** başarı ve hata (çok sık bildirim, aynı nokta bugün bildirildi vb., `lib/reports.ts`) kutuda gösterilir ve duyurulur. Üyelik yok, ad sorulmaz.
-- **%200 yazıda:** form tek sütun kalır ve sayfa kayar. Radyo seçeneklerinin her biri en az 48dp yüksekliğinde, metinle birlikte uzar. Açıklama alanı yazdıkça büyür. "Gönder" düğmesi sabitlenmez, formun sonunda kalır.
 
 **Yönetici girişi ve paneli (#5):** [`ekranlar/yonetici.svg`](ekranlar/yonetici.svg), [yüksek kontrast](ekranlar/yonetici-yuksek-kontrast.svg)
 - Giriş ekranı (`admin/giris`): e-posta, şifre, "Giriş yap". Normal kullanıcıya görünmez; Bilgi sekmesinin en altındaki sürüm satırına 3 saniye içinde 5 dokunuşla (#19) ya da `kampuserisim://admin` bağlantısıyla açılır.
