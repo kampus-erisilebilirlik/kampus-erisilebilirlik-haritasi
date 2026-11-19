@@ -4,6 +4,7 @@ import { Pressable, ScrollView, View } from "react-native";
 
 import { AppButton } from "@/components/AppButton";
 import { AppText } from "@/components/AppText";
+import { DirectionsButton } from "@/components/DirectionsButton";
 import { InfoRow } from "@/components/InfoRow";
 import { PointPhoto } from "@/components/PointPhoto";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -89,6 +90,8 @@ export default function PointScreen() {
         }
       />
 
+      {/* Eylemler: "Merdivensiz rota" #25 ile buraya eklenir */}
+      <DirectionsButton lat={point.lat} lng={point.lng} />
       <ReportLinks point={point} />
     </ScrollView>
   );

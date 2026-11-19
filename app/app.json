@@ -32,6 +32,12 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "En yakın erişilebilir noktayı bulmak için konumunuz yalnızca telefonunuzda kullanılır, sunucuya gönderilmez."
+        }
+      ],
       "expo-router",
       "expo-font",
       [

@@ -7,7 +7,7 @@ Issue #18. Hedef: WCAG 2.1 AA.
 - Bölüm 3, kod denetiminde bulunan sorunlardır.
 - Bölüm 4, Android cihazda yapılacak testlerin protokolüdür; bulgular bölüm 5'e işlenir. Sonuçlar sonuç raporuna (#9) eklenir.
 
-Nokta ve bina detayı #55 (#15), filtre #56 (#16), "en yakın" #17, bilgi ekranı #48 (#19) ile gelir. Yeni ekran ekleyenler (rota #25, sorun bildir #26, yönetici #5) bölüm 2'deki kurallara uyar ve bölüm 4'teki testleri kendi ekranları için tekrarlar.
+Harita ve liste (#14), nokta ve bina detayı (#15), filtre (#16), "en yakın" (#17) ve bilgi ekranı (#19) kodda. Yeni ekran ekleyenler (rota #25, sorun bildir #26, yönetici #5) bölüm 2'deki kurallara uyar ve bölüm 4'teki testleri kendi ekranları için tekrarlar.
 
 ## 1. Ekran × kriter tablosu
 
