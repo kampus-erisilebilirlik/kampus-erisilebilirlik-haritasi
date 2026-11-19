@@ -36,7 +36,7 @@ Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Tekl
 | Hafta 13-14 — Teslim | 2026-12-27 |
 
 ### Geliştirmeye başlarken yapılacaklar
-- [ ] Repoyu public yap (GitHub Pages / QR sayfası #27 için şart): `gh repo edit kampus-erisilebilirlik/kampus-erisilebilirlik-haritasi --visibility public --accept-visibility-change-consequences`
+- [x] Repoyu public yap (GitHub Pages / QR sayfası #27 için şart) — 2026-11-19: `gh repo edit kampus-erisilebilirlik/kampus-erisilebilirlik-haritasi --visibility public --accept-visibility-change-consequences`
 - [ ] Kaan ve Alper'e write yetkisi: `gh api -X PUT repos/kampus-erisilebilirlik/kampus-erisilebilirlik-haritasi/collaborators/<user> -f permission=push`
 - [ ] Proje panosu Workflows (web UI): "Item closed" ve "Pull request merged" → Tamamlandı; "Auto-add to project" açık; PR açılınca İncelemede
 - [ ] TS 9111 eşik değerleri standardın metninden kaynak maddeyle doğrulanacak (#21) — internetteki değerlere güvenilmeyecek
@@ -44,7 +44,6 @@ Topluma Hizmet Uygulamaları dersi projesi. Kaynak: `docs/proje-formu/Proje_Tekl
 - Issue'lara eklenen, formda olmayan kararlar: harita yanında zorunlu liste görünümü, çevrimdışı önbellek, `v_*` lat/lng view'ları, `qr_visits` sayacı, `path_edges.note`, `submit_report` RPC + client token
 
 ### Açık sorular
-- Repo şu an private; açık kaynak için public yapılacak
 - Kaan/Alper'in repo yetkisi org varsayılanı (read) — push için write verilmeli
 - Dönem başlangıç tarihi (milestone tarihleri buna göre kaydırılabilir)
 
@@ -78,3 +77,9 @@ Completed: #41 CI pgTAP (PR #44), Android izin kısıtları (#45), EAS projesi `
 Blocked: Google Maps anahtarı (Sadık, Google Cloud → EAS `GOOGLE_MAPS_API_KEY` sensitive, preview + production); yok iken harita altlığı boş; #42 cihaz testi sonuçları; Alper Supabase daveti (#1), Kaan/Alper Expo org daveti; repo public + branch koruması (#3)
 Next: Kaan'ın 15→16→17→18 zinciri (14 merge edildi, branch'i silindi: 15 artık doğrudan `main`'e PR açılır); anahtar gelince haritalı ikinci preview build; #5 yönetici, #26 sorun bildir, #25 Dijkstra
 Decisions made: Supabase GitHub entegrasyonu `main`'e merge edilen migration'ları canlıya kendisi uyguluyor (#40/#39'da oldu) — migration içeren PR'ın merge'ü = canlıya deploy, merge öncesi CI db job'ı yeşil olmalı; Android imza SHA-1 `F9:8D:95:8B:38:2D:2E:70:CB:30:F6:FA:ED:80:7E:9F:F4:37:F7:9F` (EAS remote keystore, preview ve production aynı); Android'de yüksek kontrast harita için `customMapStyle` gerekli (`userInterfaceStyle` yalnızca iOS)
+
+## Handoff — 2026-11-19
+Completed: Supabase free plan pause'undan restore edildi (2 Kasım'dan beri keepalive `exit 6` / DNS yok ile düşüyordu; elle tetiklenen keepalive yeşil, canlıda 54 bina, 7 nokta); #55 kapatıldı (main'de `7b0ad15` ile merge'liydi, branch sonradan rebase edildiği için açık görünüyordu) ve #15 kapatıldı; Kaan'ın #58 (tasarım rehberi), #56 (filtre), #57 (WCAG denetimi) PR'ları birlikte test edilip (124/124) merge edildi; repo public; `main koruması` ruleset'i (PR + 1 onay + `app`/`db` kontrolleri, force push/silme yok); #26 sorun bildir ekranı PR #59 (Alper reviewer, 140/140)
+Blocked: #25 → #17 (`useLocation`/`nearest`, Kaan) ve #24 (canlıda `path_nodes`/`path_edges` boş, Alper); Google Maps anahtarı hâlâ yok; #42 cihaz testi
+Next: #59 incelemesi + merge; #25 adım 1-2 Alper'in (Dijkstra öğrenme görevi), Sadık adım 3 ekranı; `pathEdgeSchema` ve store select'ine `note` eklenmeli (#25 adım listesi buna dayanıyor); #5 yönetici ekranı (taslak `docs/tasarim/ekranlar/yonetici.svg`)
+Decisions made: `main` korumalı — handoff dahil her değişiklik PR'la, Sadık'ın PR'ları da Kaan/Alper onayı ister; sorun bildirde ön seçim "arızalı", arızalı noktada "düzeldi mi" girişi `durum=working` parametresiyle; `unknown` bildirimi "bilgi yanlış" anlamında ve açıklama zorunlu (Zod, istemcide); kodlanan ekranın SVG taslağı silinip rehberin "Kodda olanlar" tablosuna taşınır; keepalive pause'u engellemiyorsa ilk belirti `exit 6` (DNS) — dashboard'dan restore gerekir
