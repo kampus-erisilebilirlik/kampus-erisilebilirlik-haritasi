@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="800" viewBox="0 0 760 800" font-family="Roboto, Arial, sans-serif">
+  <title>Yönetici girişi ve paneli (#5) — wireframe, yüksek kontrast tema</title>
+  <g id="Giris">
+    <rect width="360" height="800" fill="#000000"/>
+    <g id="Baslik">
+      <path d="M16 28 L28 16 M16 28 L28 40 M16 28 L40 28" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <text x="56" y="36" font-size="20" font-weight="600" fill="#FFFFFF">Yönetici girişi</text>
+      <line x1="0" y1="56" x2="360" y2="56" stroke="#FFFFFF"/>
+    </g>
+    <text x="16" y="92" font-size="16" fill="#FFFFFF">Yalnızca Engelli Öğrenci Birimi</text>
+    <text x="16" y="114" font-size="16" fill="#FFFFFF">yetkilileri içindir.</text>
+    <g id="E-posta">
+      <text x="16" y="156" font-size="14" font-weight="600" fill="#E0E0E0">E-posta</text>
+      <rect x="16" y="166" width="328" height="48" rx="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+    </g>
+    <g id="Sifre">
+      <text x="16" y="246" font-size="14" font-weight="600" fill="#E0E0E0">Şifre</text>
+      <rect x="16" y="256" width="328" height="48" rx="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+      <text x="328" y="286" font-size="14" font-weight="600" fill="#FFD60A" text-anchor="end">Göster</text>
+    </g>
+    <g id="Giris yap">
+      <rect x="16" y="336" width="328" height="48" rx="12" fill="#FFD60A"/>
+      <text x="180" y="365" font-size="14" font-weight="600" fill="#000000" text-anchor="middle">Giriş yap</text>
+    </g>
+  </g>
+  <g id="Panel - Bildirimler" transform="translate(400 0)">
+    <rect width="360" height="800" fill="#000000"/>
+    <g id="Baslik">
+      <text x="16" y="36" font-size="20" font-weight="600" fill="#FFFFFF">Yönetici</text>
+      <text x="344" y="36" font-size="14" font-weight="600" fill="#FFD60A" text-anchor="end">Çıkış</text>
+    </g>
+    <g id="Sekmeler">
+      <rect x="16" y="56" width="108" height="48" rx="12" fill="#FFD60A"/>
+      <text x="70" y="85" font-size="14" font-weight="600" fill="#000000" text-anchor="middle">Bildirimler (3)</text>
+      <rect x="128" y="56" width="104" height="48" rx="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+      <text x="180" y="85" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Noktalar</text>
+      <rect x="236" y="56" width="108" height="48" rx="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+      <text x="290" y="85" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Kullanım</text>
+    </g>
+    <g id="Bildirim karti">
+      <rect x="16" y="120" width="328" height="236" rx="12" fill="#121212" stroke="#FFFFFF"/>
+      <text x="32" y="152" font-size="20" font-weight="600" fill="#FFFFFF">Asansör</text>
+      <text x="32" y="176" font-size="16" fill="#E0E0E0">Merkezi Kütüphane · Zemin kat</text>
+      <g id="Bildirilen durum">
+        <rect x="32" y="188" width="148" height="28" rx="6" fill="none" stroke="#FF8A80" stroke-width="1.5"/>
+        <circle cx="46" cy="202" r="7" fill="#FF8A80"/>
+        <text x="60" y="207" font-size="14" font-weight="600" fill="#FF8A80">Bildirilen: Arızalı</text>
+      </g>
+      <text x="32" y="244" font-size="16" fill="#FFFFFF">"2. katta durmuyor, kapı açılmıyor."</text>
+      <text x="32" y="268" font-size="14" fill="#E0E0E0">25 Ekim 2026, 14:20</text>
+      <g id="Onayla">
+        <rect x="32" y="288" width="144" height="48" rx="12" fill="#FFD60A"/>
+        <text x="104" y="317" font-size="14" font-weight="600" fill="#000000" text-anchor="middle">Onayla</text>
+      </g>
+      <g id="Reddet">
+        <rect x="184" y="288" width="144" height="48" rx="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+        <text x="256" y="317" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Reddet</text>
+      </g>
+    </g>
+    <g id="Onay penceresi notu">
+      <rect x="16" y="380" width="328" height="88" rx="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+      <text x="32" y="410" font-size="16" font-weight="600" fill="#FFFFFF">Onaylarsanız asansörün durumu</text>
+      <text x="32" y="432" font-size="16" font-weight="600" fill="#FFFFFF">"Arızalı" olur ve uygulamada görünür.</text>
+      <text x="32" y="454" font-size="14" fill="#E0E0E0">Onay penceresi metni</text>
+    </g>
+  </g>
+</svg>
