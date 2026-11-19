@@ -7,6 +7,8 @@ import { buildGraph, shortestPath, type Graph } from "./dijkstra";
 
 // Başlangıç düğümü bundan uzaksa kullanıcı yol ağının dışında sayılır
 export const MAX_START_DISTANCE_M = 150;
+// Ağa bağlanmamış hedef nokta en yakın düğüme en fazla bu kadar uzak olabilir; yoksa rota hedefe varmaz
+export const MAX_TARGET_DISTANCE_M = 50;
 // Tekerlekli sandalye için yaklaşık hız; süre metinde "yaklaşık" diye verilir
 export const WHEELCHAIR_SPEED_MPS = 0.8;
 
@@ -35,9 +37,12 @@ function startNode(nodes: PathNode[], start: RouteStart): (PathNode & { distance
   return nearest({ latitude: start.building.lat, longitude: start.building.lng }, entrances)[0] ?? null;
 }
 
-// Hedef noktaya bağlı düğüm; nokta yol ağına bağlanmamışsa ona en yakın düğüm
+// Hedef noktaya bağlı düğüm; nokta yol ağına bağlanmamışsa ona en fazla 50 m uzaktaki en yakın düğüm
 function targetNode(nodes: PathNode[], target: Point): PathNode | null {
-  return nodes.find((n) => n.point_id === target.id) ?? nearest({ latitude: target.lat, longitude: target.lng }, nodes)[0] ?? null;
+  const linked = nodes.find((n) => n.point_id === target.id);
+  if (linked) return linked;
+  const closest = nearest({ latitude: target.lat, longitude: target.lng }, nodes)[0];
+  return closest && closest.distance <= MAX_TARGET_DISTANCE_M ? closest : null;
 }
 
 // Ardışık düğümler arasındaki kenarlardan adım listesi; aynı notlu ardışık kenarlar tek adımda birleşir
@@ -67,13 +72,18 @@ export function routeSummary(route: { distanceM: number; durationMin: number }):
 
 // En kısa merdivensiz rota (#25). Hesap telefonda yapılır, konum sunucuya gitmez
 export function planRoute(nodes: PathNode[], edges: PathEdge[], target: Point, start: RouteStart): RouteResult {
-  const from = startNode(nodes, start);
+  // Yol ağı boşsa ya da hedef ağa ulaşmıyorsa bu noktaya kayıtlı merdivensiz yol yok
+  if (nodes.length === 0) return { kind: "no-route" };
   const to = targetNode(nodes, target);
-  if (!from || !to) return { kind: "no-start" };
+  if (!to) return { kind: "no-route" };
+
+  // no-start yalnızca seçilen binanın giriş düğümü yokken
+  const from = startNode(nodes, start);
+  if (!from) return { kind: "no-start" };
   if (start.kind === "location" && from.distance > MAX_START_DISTANCE_M) return { kind: "far", distanceM: from.distance };
 
   const graph = buildGraph(
-    // Eski önbellekte note alanı yok
+    // Zod default'u yalnızca sunucudan gelen veriye uygulanır; persist edilmiş eski önbellekte note yok
     edges.map((e) => ({ from: e.from_node, to: e.to_node, lengthM: e.length_m, note: e.note || "" })),
   );
   const path = shortestPath(graph, from.id, to.id);

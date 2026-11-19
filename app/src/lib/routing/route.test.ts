@@ -76,8 +76,23 @@ describe("planRoute", () => {
     expect(planRoute(nodes, edges, island, here(0))).toEqual({ kind: "no-route" });
   });
 
-  it("yol ağı boşsa başlangıç bulunamaz", () => {
-    expect(planRoute([], [], target, here(0))).toEqual({ kind: "no-start" });
+  it("yol ağı boşsa kayıtlı yol yok", () => {
+    expect(planRoute([], [], target, here(0))).toEqual({ kind: "no-route" });
+    const building = { id: "teknoloji", lat: north(0), lng: 32.5 } as Building;
+    expect(planRoute([], [], target, { kind: "building", building })).toEqual({ kind: "no-route" });
+  });
+
+  it("ağa bağlı olmayan hedef en yakın düğüme 50 m'den uzaksa kayıtlı yol yok", () => {
+    const far = { id: "p-uzak", lat: north(2260), lng: 32.5 } as Point;
+    expect(planRoute(nodes, edges, far, here(0))).toEqual({ kind: "no-route" });
+    const near = { id: "p-yakin", lat: north(305), lng: 32.5 } as Point;
+    expect(planRoute(nodes, edges, near, here(0))).toMatchObject({ kind: "found", distanceM: 260 });
+  });
+
+  it("eski önbellekte notu olmayan kenar adım listesini bozmaz", () => {
+    const legacy = edges.map(({ note: _note, ...e }) => e) as PathEdge[];
+    const route = planRoute(nodes, legacy, target, here(0));
+    expect(route).toMatchObject({ kind: "found", steps: [{ note: "", distanceM: 260 }] });
   });
 
   it("başlangıç hedefin düğümüyse tek düğümlük rota", () => {
