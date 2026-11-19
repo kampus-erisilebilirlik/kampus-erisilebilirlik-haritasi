@@ -2,7 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Link } from "expo-router";
 import { useEffect, useMemo, type ReactNode } from "react";
-import { AccessibilityInfo, Pressable, View } from "react-native";
+import { AccessibilityInfo, Pressable, ScrollView, View } from "react-native";
 
 import { formatNumber } from "@/lib/format";
 import { pointTypeIcon } from "@/lib/icons";
@@ -43,6 +43,8 @@ export function SelectionCard({ target, onClose, announcement, children }: Props
         left: spacing.sm,
         right: spacing.sm,
         bottom: spacing.sm,
+        // Büyük yazıda veya yatay ekranda kart haritayı aşmaz, içerik kayar (WCAG 1.4.4, 1.4.10)
+        maxHeight: "75%",
         padding: spacing.md,
         gap: spacing.sm,
         borderWidth: 1,
@@ -77,12 +79,14 @@ export function SelectionCard({ target, onClose, announcement, children }: Props
           <Ionicons name="close" size={28} color={colors.text} importantForAccessibility="no" />
         </Pressable>
       </View>
-      {target.kind === "building" ? (
-        <BuildingSummary building={target.building} />
-      ) : (
-        <PointSummary point={target.point} />
-      )}
-      {children}
+      <ScrollView style={{ flexGrow: 0 }} contentContainerStyle={{ gap: spacing.sm }}>
+        {target.kind === "building" ? (
+          <BuildingSummary building={target.building} />
+        ) : (
+          <PointSummary point={target.point} />
+        )}
+        {children}
+      </ScrollView>
     </View>
   );
 }

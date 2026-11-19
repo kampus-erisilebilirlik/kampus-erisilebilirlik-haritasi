@@ -23,7 +23,7 @@ export default function InfoScreen() {
       <View
         style={{ minHeight: minTouchSize, flexDirection: "row", alignItems: "center", gap: spacing.md }}
       >
-        <AppText style={{ flex: 1 }}>
+        <AppText style={{ flex: 1 }} importantForAccessibility="no" accessibilityElementsHidden>
           Yüksek kontrast
         </AppText>
         <Switch

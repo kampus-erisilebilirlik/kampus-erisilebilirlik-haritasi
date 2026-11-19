@@ -218,14 +218,18 @@ export default function SlopeMeterScreen() {
           )}
 
           <AppText variant="label">Korkuluk</AppText>
-          <View accessibilityRole="radiogroup" style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}>
+          <View
+            accessibilityRole="radiogroup"
+            accessibilityLabel="Korkuluk"
+            style={{ flexDirection: "row", flexWrap: "wrap", gap: spacing.sm }}
+          >
             {handrailOptions.map((o) => (
               <AppButton
                 key={o.value}
                 label={o.label}
                 variant={handrail === o.value ? "primary" : "secondary"}
                 accessibilityRole="radio"
-                accessibilityState={{ selected: handrail === o.value }}
+                accessibilityState={{ checked: handrail === o.value }}
                 onPress={() => setHandrail(o.value)}
               />
             ))}
