@@ -6,7 +6,7 @@ import MapView, { Marker, PROVIDER_GOOGLE, type LatLng } from "react-native-maps
 
 import { accessScoreIcon, pointTypeIcon } from "@/lib/icons";
 import { accessScoreLabel, pointStatusLabel, pointTypeLabel } from "@/lib/labels";
-import { CAMPUS_REGION, toLatLng, type MapSelection } from "@/lib/campus";
+import { CAMPUS_MIN_ZOOM, CAMPUS_REGION, mapBounds, toLatLng, type MapSelection } from "@/lib/campus";
 import { highContrastMapStyle } from "@/lib/mapStyle";
 import { floorLabel, pointA11yLabel } from "@/lib/points";
 import type { Building, Point } from "@/lib/schemas";
@@ -52,6 +52,13 @@ export function CampusMap({ ref, buildings, points, selection, onSelect, showsUs
     fitted.current = true;
   }, [ready, buildings, points]);
 
+  // Harita kampüsten uzağa kaydırılamaz; sınır yalnızca Google haritasında (Android) uygulanabiliyor
+  const bounds = useMemo(() => mapBounds([...buildings, ...points].map(toLatLng)), [buildings, points]);
+  useEffect(() => {
+    if (!ready || Platform.OS !== "android") return;
+    mapRef.current?.setMapBoundaries(bounds.northEast, bounds.southWest);
+  }, [ready, bounds]);
+
   // Özel işaret görünümleri her karede yeniden çizilmesin: değişiklikten sonra kısa süre izlenir
   const version = useMemo(() => ({ buildings, points, selection, theme }), [buildings, points, selection, theme]);
   const [settled, setSettled] = useState<typeof version | null>(null);
@@ -69,6 +76,7 @@ export function CampusMap({ ref, buildings, points, selection, onSelect, showsUs
       style={StyleSheet.absoluteFill}
       provider={Platform.OS === "android" ? PROVIDER_GOOGLE : undefined}
       initialRegion={CAMPUS_REGION}
+      minZoomLevel={CAMPUS_MIN_ZOOM}
       userInterfaceStyle={theme.highContrast ? "dark" : "light"}
       customMapStyle={theme.highContrast ? highContrastMapStyle : []}
       onMapReady={() => setReady(true)}
