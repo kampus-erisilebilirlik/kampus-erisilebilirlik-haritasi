@@ -21,7 +21,8 @@ Harita ve liste (#14), nokta ve bina detayı (#15), filtre (#16), "en yakın" (#
 | Bina detayı | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | Bekliyor |
 | Bilgi / KVKK | ✓ | ✓ | ✓ | — | ✓ | ✓ | ✓ | Bekliyor |
 | Eğim ölçer (ekip) | ✓ (K7) | ✓ (K7) | ✓ | ✓ | ✓ | ✓ | Açık (K8) | Bekliyor |
-| Rota, sorun bildir, yönetici | Ekranlar yapılınca (#25, #26, #5) | | | | | | | |
+| Sorun bildir | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | Bekliyor |
+| Rota, yönetici | Ekranlar yapılınca (#25, #5) | | | | | | | |
 
 Jest'te ekran okuyucu sorgularıyla (`getByRole`, `getByLabelText`) yazılmış erişilebilirlik testleri:
 
@@ -29,7 +30,7 @@ Jest'te ekran okuyucu sorgularıyla (`getByRole`, `getByLabelText`) yazılmış 
 - Filtre: `FilterBar.test.tsx`
 - Bilgi ekranı: `InfoSections.test.tsx`
 - Puan ve durum rozetleri
-- Sorun bildir: #26 ile eklenecek
+- Sorun bildir: `ReportForm.test.tsx`, `screens.test.tsx`
 
 ## 2. Kodda uygulananlar
 
@@ -110,6 +111,7 @@ Android telefonda, Türkçe dil ayarıyla yapılır.
 11. **QR / deep link:** `adb shell am start -a android.intent.action.VIEW -d "kampuserisim://bina/<slug>"` ile bina sayfası açılıyor mu, geri tuşu sekmelere dönüyor mu?
 12. **Bilgi ekranı:** Arama, e-posta ve harita bağlantıları ilgili uygulamayı açıyor mu? KVKK metni başlıklarla gezilebiliyor mu?
 13. **Eğim ölçer (preview build):** Mesajlar duyuruluyor mu? Korkuluk seçimi "Korkuluk, … radyo düğmesi, işaretli" okunuyor mu? Alan etiketleri okunuyor mu (K8)?
+14. **Sorun bildir:** Nokta detayında "Sorun bildir"e girip formu yalnızca TalkBack ile doldur. Seçenekler "… radyo düğmesi, işaretli" okunuyor mu? Açıklama alanı "Açıklama, isteğe bağlı" diye okunuyor mu, sayaç güncelleniyor mu? Klavye açıkken Gönder'e ulaşılıyor mu? Başarı ve hata (aynı noktaya ikinci bildirim → "bugün zaten bildirim gönderdiniz") duyuruluyor mu? Hatadan sonra yazılan metin kaybolmuyor mu?
 
 ## 5. Cihaz testi bulguları
 

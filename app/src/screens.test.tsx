@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
 
 import BuildingScreen from "@/app/bina/[slug]";
+import ReportScreen from "@/app/bildir/[pointId]";
 import PointScreen from "@/app/nokta/[id]";
 import type { Building, Point } from "@/lib/schemas";
 import { useDataStore } from "@/store/data";
@@ -9,6 +10,7 @@ import { useDataStore } from "@/store/data";
 const mockParams = jest.fn();
 jest.mock("expo-router", () => ({
   useLocalSearchParams: () => mockParams(),
+  useRouter: () => ({ back: jest.fn(), replace: jest.fn(), canGoBack: () => true }),
   Stack: { Screen: () => null },
   Link: ({ children }: { children: unknown }) => children,
 }));
@@ -94,6 +96,41 @@ describe("nokta detayı", () => {
     mockParams.mockReturnValue({ id: "p1" });
     await render(<PointScreen />);
     expect(screen.queryByText("Nokta bulunamadı. Silinmiş olabilir.")).toBeNull();
+  });
+});
+
+describe("nokta detayından sorun bildirme", () => {
+  it("her noktada Sorun bildir, arızalıda ayrıca 'düzeldi mi' düğmesi var", async () => {
+    mockParams.mockReturnValue({ id: "p1" });
+    const { unmount } = await render(<PointScreen />);
+    expect(screen.getByRole("button", { name: "Sorun bildir" })).toBeOnTheScreen();
+    expect(screen.queryByRole("button", { name: "Bu nokta düzeldi mi? Bildirin" })).toBeNull();
+    await unmount();
+
+    mockParams.mockReturnValue({ id: "p2" });
+    await render(<PointScreen />);
+    expect(screen.getByRole("button", { name: "Bu nokta düzeldi mi? Bildirin" })).toBeOnTheScreen();
+  });
+});
+
+describe("sorun bildir ekranı", () => {
+  it("noktanın adını başlıkta verir, durum parametresiyle ön seçim yapar", async () => {
+    mockParams.mockReturnValue({ pointId: "p2", durum: "working" });
+    await render(<ReportScreen />);
+    expect(screen.getByRole("header", { name: "Sorun bildir: Arka rampa" })).toBeOnTheScreen();
+    expect(screen.getByRole("radio", { name: "Tekrar çalışıyor" })).toBeChecked();
+  });
+
+  it("geçersiz durum parametresinde 'arızalı' seçili gelir", async () => {
+    mockParams.mockReturnValue({ pointId: "p1", durum: "x" });
+    await render(<ReportScreen />);
+    expect(screen.getByRole("radio", { name: "Çalışmıyor / arızalı" })).toBeChecked();
+  });
+
+  it("nokta yoksa bulunamadı der", async () => {
+    mockParams.mockReturnValue({ pointId: "yok" });
+    await render(<ReportScreen />);
+    expect(screen.getByText("Nokta bulunamadı. Silinmiş olabilir.")).toBeOnTheScreen();
   });
 });
 
