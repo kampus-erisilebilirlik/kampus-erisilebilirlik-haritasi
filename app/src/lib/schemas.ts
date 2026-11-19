@@ -52,6 +52,8 @@ export const pathEdgeSchema = z.object({
   from_node: z.string(),
   to_node: z.string(),
   length_m: z.coerce.number(),
+  // Adım listesindeki tarif ("Kütüphane önündeki yaya yolu"); eski önbellekte yok, boş kabul edilir
+  note: z.string().default(""),
 });
 
 export type AccessScore = z.infer<typeof accessScoreSchema>;
