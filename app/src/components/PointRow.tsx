@@ -1,6 +1,6 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Link } from "expo-router";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 import { formatDistance, formatNumber } from "@/lib/format";
 import { pointTypeIcon } from "@/lib/icons";
@@ -8,6 +8,7 @@ import { pointA11yLabel, pointSubtitle } from "@/lib/points";
 import type { Point } from "@/lib/schemas";
 import { useDataStore } from "@/store/data";
 import { useTheme } from "@/theme/ThemeProvider";
+import { AppPressable } from "./AppPressable";
 import { AppText } from "./AppText";
 import { StatusBadge } from "./StatusBadge";
 
@@ -19,7 +20,7 @@ export function PointRow({ point, distance }: { point: Point; distance?: number 
   const label = pointA11yLabel(point, buildingName);
   return (
     <Link href={{ pathname: "/nokta/[id]", params: { id: point.id } }} asChild>
-      <Pressable
+      <AppPressable
         accessibilityRole="link"
         accessibilityLabel={distance === undefined ? label : `${label}, ${formatDistance(distance)}`}
         accessibilityHint="Ayrıntıları açar"
@@ -67,7 +68,7 @@ export function PointRow({ point, distance }: { point: Point; distance?: number 
         </View>
         {distance !== undefined && <AppText variant="label">{formatDistance(distance, true)}</AppText>}
         <MaterialCommunityIcons name="chevron-right" size={28} color={colors.textMuted} />
-      </Pressable>
+      </AppPressable>
     </Link>
   );
 }

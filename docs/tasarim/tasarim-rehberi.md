@@ -33,7 +33,7 @@ Kurallar teklif formunun "Kullanıcıya uygunluk" bölümünden gelir.
 | `primary` | #0B57D0 | #FFD60A | Birincil düğme, bağlantı, seçili öğe |
 | `onPrimary` | #FFFFFF | #000000 | Birincil düğme üstündeki metin |
 | `border` | #80868F | #FFFFFF | Kenarlık, ayırıcı, anahtarın kapalı izi |
-| `focus` | #0B57D0 | #FFD60A | Klavye odağı (henüz kullanılmıyor, bkz. WCAG K6) |
+| `focus` | #0B57D0 | #FFD60A | Klavye odağı: odaktaki öğenin 3px çerçevesi (`AppPressable`) |
 | `status.working` / `score.green` | #1B6E33 | #5CE08A | Çalışıyor / erişilebilir |
 | `status.broken` / `score.red` | #B3261E | #FF8A80 | Arızalı / erişilebilir değil |
 | `status.unknown` / `score.unknown` | #4A5058 | #E0E0E0 | Durumu bilinmiyor / henüz ölçülmedi (bilerek renksiz gri) |
@@ -71,6 +71,7 @@ Tür simgeleri Material Community Icons'tan, arayüz, durum ve puan simgeleri Io
 | Bileşen | Görünüm | Not |
 |---|---|---|
 | `AppButton` | Birincil (dolu `primary`) ve ikincil (çerçeveli). En az 48dp, köşe 12. | Basılıyken %80, devre dışıyken %50 opaklık |
+| `AppPressable` | Dokunulabilir her öğenin temeli (`AppButton`, çip, satır, kart düğmeleri). Odaktayken 3px `focus` çerçevesi. | Yeni dokunulabilir öğe `Pressable` yerine bununla yazılır |
 | `StatusBadge` / `ScoreBadge` | Renkli çerçeve + simge + metin | Tek parça okunur: "Durum: Çalışıyor" |
 | `FilterBar` | Yatay kayan çipler: türler, "Sadece çalışanlar", filtre etkinse "Temizle" (yüksekliği 48dp, tam yuvarlak). Seçili çip dolu ve onay işaretli. Altında sonuç sayısı. | Onay kutusu; sonuç duyurulur |
 | `PointRow` | `surface` kart: tür simgesi, ad, tür · bina · kat, durum rozeti, sağda ok | Bağlantı; "tür, ad, bina, kat, durum" |

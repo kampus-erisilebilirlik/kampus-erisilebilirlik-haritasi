@@ -1,13 +1,14 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import type { ComponentProps } from "react";
 import { useRef, useState } from "react";
-import { AccessibilityInfo, Pressable, TextInput, View } from "react-native";
+import { AccessibilityInfo, TextInput, View } from "react-native";
 
 import { MAX_DESCRIPTION_LENGTH, submitReport, validateReport } from "@/lib/reports";
 import type { Point, PointStatus } from "@/lib/schemas";
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
 import { AppButton } from "./AppButton";
+import { AppPressable } from "./AppPressable";
 import { AppText } from "./AppText";
 
 type IconName = ComponentProps<typeof Ionicons>["name"];
@@ -82,7 +83,7 @@ export function ReportForm({ point, initialStatus, onDone }: Props) {
           const checked = status === o.status;
           const color = checked ? colors.onPrimary : colors.text;
           return (
-            <Pressable
+            <AppPressable
               key={o.status}
               accessibilityRole="radio"
               accessibilityState={{ checked }}
@@ -110,7 +111,7 @@ export function ReportForm({ point, initialStatus, onDone }: Props) {
               />
               <Ionicons name={o.icon} size={22} color={color} importantForAccessibility="no" />
               <AppText style={{ flex: 1, color }}>{o.label}</AppText>
-            </Pressable>
+            </AppPressable>
           );
         })}
       </View>

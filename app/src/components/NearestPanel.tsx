@@ -1,5 +1,5 @@
 import { Link } from "expo-router";
-import { Linking, Pressable, ScrollView, View } from "react-native";
+import { Linking, ScrollView, View } from "react-native";
 
 import { formatDistance } from "@/lib/format";
 import { pointTypeLabel, pointTypePluralLabel } from "@/lib/labels";
@@ -11,6 +11,7 @@ import { useDataStore } from "@/store/data";
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
 import { AppButton } from "./AppButton";
+import { AppPressable } from "./AppPressable";
 import { AppText } from "./AppText";
 
 export type NearestState =
@@ -36,7 +37,7 @@ function ResultRow({ point, index, onPress }: { point: Nearby; index: number; on
   const { colors, spacing } = useTheme();
   const buildingName = useDataStore((s) => s.buildings.find((b) => b.id === point.building_id)?.name);
   return (
-    <Pressable
+    <AppPressable
       onPress={onPress}
       accessibilityRole="button"
       accessibilityLabel={`${index + 1}. ${pointA11yLabel(point, buildingName)}, ${formatDistance(point.distance)}`}
@@ -57,7 +58,7 @@ function ResultRow({ point, index, onPress }: { point: Nearby; index: number; on
         <AppText muted>{pointSubtitle(point, buildingName)}</AppText>
       </View>
       <AppText variant="label">{formatDistance(point.distance, true)}</AppText>
-    </Pressable>
+    </AppPressable>
   );
 }
 

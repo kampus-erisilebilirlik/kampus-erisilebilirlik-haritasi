@@ -1,7 +1,8 @@
-import { Pressable, type PressableProps } from "react-native";
+import type { PressableProps } from "react-native";
 
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
+import { AppPressable } from "./AppPressable";
 import { AppText } from "./AppText";
 
 type Props = Omit<PressableProps, "children"> & {
@@ -13,7 +14,7 @@ export function AppButton({ label, variant = "primary", disabled, style, ...rest
   const { colors, spacing, radius } = useTheme();
   const primary = variant === "primary";
   return (
-    <Pressable
+    <AppPressable
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityState={{ disabled: !!disabled }}
@@ -39,6 +40,6 @@ export function AppButton({ label, variant = "primary", disabled, style, ...rest
       <AppText variant="label" style={{ color: primary ? colors.onPrimary : colors.text }}>
         {label}
       </AppText>
-    </Pressable>
+    </AppPressable>
   );
 }

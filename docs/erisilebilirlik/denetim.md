@@ -46,6 +46,7 @@ Jest'te ekran okuyucu sorgularıyla (`getByRole`, `getByLabelText`) yazılmış 
 | 1.4.10 Yeniden akış | Yatay ekranda ve büyük yazıda içerik kaydırılabilir. İki boyutlu kaydırma yalnızca haritada var. | tüm ekranlar |
 | 1.4.11 Metin dışı kontrast | Kenarlık (anahtarın kapalı izi, çip ve düğme sınırı) ≥3:1. İşaret çerçeveleri durum/puan renginde. | `theme/tokens.ts` |
 | 2.4.6 Başlıklar ve etiketler | Her ekranın başlığı var. Düğmeler eylemi söyler ("Kartı kapat", "Filtreleri temizle"). Liste başlıklarındaki "Bina sayfasını aç" düğmeleri bina adıyla ayrışır. | tüm ekranlar |
+| 2.4.7 Odak görünür | Harici klavye veya D-pad ile odaklanan öğe 3px `focus` renginde çerçeve alır; çerçeve yerleşimi kaydırmaz, dokunmatik kullanımda çıkmaz. | `AppPressable` (tüm düğme, çip ve satırlar) |
 | 2.5.3 Etikette ad | Ekran okuyucu adı görünen metni içerir ("Teknoloji Fakültesi: Bina sayfasını aç"). | `liste.tsx` |
 | 2.5.5 Hedef boyutu | Dokunulabilir her öğe en az 48dp (`minTouchSize`). | `AppButton`, `FilterBar`, `SelectionCard`, `InfoSections` |
 | 3.1.1 Sayfanın dili | Metinler Türkçe ve sade; kısaltmalar açıklanır ("TS 9111 (Türk erişilebilirlik standardı)"). | tüm ekranlar |
@@ -76,7 +77,7 @@ Oranlar WCAG göreli parlaklık formülüyle hesaplandı; aynı hesap `app/src/t
 | K3 | Android'de react-native-maps işaretin `accessibilityLabel`'ını TalkBack'e iletmiyor; işaretler adsız okunuyordu. | 1.1.1, 4.1.2 | Düzeltildi (#49): işaretlere `title`/`description` verildi. Cihazda senaryo 5 ile doğrulanacak. |
 | K4 | Harita kartı büyük yazıda veya yatay ekranda haritadan taşabiliyordu. | 1.4.4, 1.4.10 | Düzeltildi: kart en fazla %75 yükseklikte, içerik kayar. |
 | K5 | Bilgi sekmesinde "Yüksek kontrast" hem metin hem anahtar olarak iki kez okunuyordu. | 4.1.2 | Düzeltildi: görünen metin ekran okuyucudan gizlendi. |
-| K6 | Harici klavye veya Switch Access'te uygulamanın çizdiği bir odak göstergesi yok (`theme.focus` kullanılmıyor); TalkBack kendi çerçevesini çizer. | 2.4.7 | Açık: cihaz testinde (senaryo 10) değerlendirilecek. |
+| K6 | Harici klavye veya Switch Access'te uygulamanın çizdiği bir odak göstergesi yok (`theme.focus` kullanılmıyor); TalkBack kendi çerçevesini çizer. | 2.4.7 | Düzeltildi: tüm dokunulabilir öğeler `AppPressable` ile odakta 3px `focus` renginde çerçeve alıyor; renk iki temada ≥3:1 (`tokens.test.ts`). Cihazda senaryo 10 ile doğrulanacak. |
 | K7 | Eğim ölçerde korkuluk seçenekleri durumu `selected` ile veriyordu; TalkBack "işaretli" okumuyordu. Grubun adı yoktu. | 4.1.2 | Düzeltildi: `checked` kullanıldı, gruba "Korkuluk" adı verildi. |
 | K8 | Eğim ölçerin şerit metre alanlarında etiket olarak yalnızca placeholder var; yazı girilince görünen etiket kayboluyor. Ekran okuyucu etiketleri var. | 3.3.2 | Açık: görünen etiket eklenmesi önerildi; karar ekranın sahiplerinde (#22). |
 | K9 | Yüksek kontrast modunda harita için `userInterfaceStyle` kullanılıyordu; bu Android'de etkisiz, altlık açık renkte kalıyordu (Sadık'ın tespiti). | 1.4.3 | Düzeltildi: Android'de `customMapStyle` ile koyu, yüksek kontrastlı stil; iOS'ta `userInterfaceStyle` sürüyor. |
