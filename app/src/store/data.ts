@@ -36,7 +36,7 @@ export async function fetchSnapshot(): Promise<Snapshot> {
     supabase.from("v_buildings").select("*"),
     supabase.from("v_points").select("*"),
     supabase.from("v_path_nodes").select("*"),
-    supabase.from("path_edges").select("id, from_node, to_node, length_m"),
+    supabase.from("path_edges").select("id, from_node, to_node, length_m, note"),
   ]);
   const failed = [buildings, points, pathNodes, pathEdges].find((r) => r.error);
   if (failed?.error) throw new Error(failed.error.message);
