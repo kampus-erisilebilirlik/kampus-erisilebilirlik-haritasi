@@ -1,8 +1,12 @@
 import { fireEvent, render, screen } from "@testing-library/react-native";
+import * as Location from "expo-location";
+import { AccessibilityInfo } from "react-native";
 
+import ListScreen from "@/app/(tabs)/liste";
 import BuildingScreen from "@/app/bina/[slug]";
 import ReportScreen from "@/app/bildir/[pointId]";
 import PointScreen from "@/app/nokta/[id]";
+import { useLocationStore } from "@/hooks/useLocation";
 import type { Building, Point } from "@/lib/schemas";
 import { useDataStore } from "@/store/data";
 
@@ -13,6 +17,12 @@ jest.mock("expo-router", () => ({
   useRouter: () => ({ back: jest.fn(), replace: jest.fn(), canGoBack: () => true }),
   Stack: { Screen: () => null },
   Link: ({ children }: { children: unknown }) => children,
+}));
+jest.mock("expo-location", () => ({
+  Accuracy: { Balanced: 3 },
+  getForegroundPermissionsAsync: jest.fn(),
+  requestForegroundPermissionsAsync: jest.fn(),
+  getCurrentPositionAsync: jest.fn(),
 }));
 jest.mock("@/lib/supabase", () => ({
   getSupabase: () => ({
@@ -162,5 +172,53 @@ describe("bina sayfası", () => {
     await render(<BuildingScreen />);
     expect(screen.getByText("Bina bulunamadı.")).toBeOnTheScreen();
     expect(screen.getByRole("button", { name: "Haritaya dön" })).toBeOnTheScreen();
+  });
+});
+
+describe("liste ekranında konuma göre sıralama", () => {
+  const permission = (granted: boolean) => ({ granted }) as Location.LocationPermissionResponse;
+  const position = (latitude: number) =>
+    ({ coords: { latitude, longitude: 32.51, accuracy: 10 } }) as Location.LocationObject;
+
+  beforeEach(() => {
+    useLocationStore.setState({ permission: "unknown", locating: false, last: null });
+    jest.mocked(Location.getCurrentPositionAsync).mockReset();
+    // Açılışta izin yok: konum yalnızca kullanıcı butona basınca istenir
+    jest.mocked(Location.getForegroundPermissionsAsync).mockResolvedValue(permission(false));
+    jest.mocked(Location.requestForegroundPermissionsAsync).mockResolvedValue(permission(true));
+    jest
+      .spyOn(AccessibilityInfo, "announceForAccessibility")
+      .mockClear()
+      .mockImplementation(() => undefined);
+  });
+
+  it("her basışta yeni konum alır", async () => {
+    jest.mocked(Location.getCurrentPositionAsync).mockResolvedValue(position(38.02));
+    await render(<ListScreen />);
+    await fireEvent.press(screen.getByRole("button", { name: "Konumuma göre sırala" }));
+    expect(await screen.findByText("Konumunuza göre yakından uzağa sıralandı (kuş uçuşu).")).toBeOnTheScreen();
+
+    await fireEvent.press(screen.getByRole("button", { name: "Bina adına göre sırala" }));
+    await fireEvent.press(screen.getByRole("button", { name: "Konumuma göre sırala" }));
+    expect(await screen.findByText("Konumunuza göre yakından uzağa sıralandı (kuş uçuşu).")).toBeOnTheScreen();
+    expect(Location.getCurrentPositionAsync).toHaveBeenCalledTimes(2);
+  });
+
+  it("izin önceden verildiyse açılışta bir kez, sormadan konum alır", async () => {
+    jest.mocked(Location.getForegroundPermissionsAsync).mockResolvedValue(permission(true));
+    jest.mocked(Location.getCurrentPositionAsync).mockResolvedValue(position(38.02));
+    await render(<ListScreen />);
+    expect(await screen.findByText("Konumunuza göre yakından uzağa sıralandı (kuş uçuşu).")).toBeOnTheScreen();
+    expect(Location.getCurrentPositionAsync).toHaveBeenCalledTimes(1);
+  });
+
+  it("konum alınamazsa bina adına göre kalır ve nedenini söyler", async () => {
+    jest.mocked(Location.getCurrentPositionAsync).mockRejectedValue(new Error("konum servisi kapalı"));
+    await render(<ListScreen />);
+    await fireEvent.press(screen.getByRole("button", { name: "Konumuma göre sırala" }));
+    const message = "Konumunuz alınamadı. Telefonun konum hizmetinin açık olduğundan emin olup tekrar deneyin.";
+    expect(await screen.findByText(message)).toBeOnTheScreen();
+    expect(screen.getByText("Bina adına göre sıralandı.")).toBeOnTheScreen();
+    expect(AccessibilityInfo.announceForAccessibility).toHaveBeenCalledWith(message);
   });
 });
