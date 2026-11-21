@@ -1,21 +1,23 @@
 import { Link } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
-import { SectionList, View } from "react-native";
+import { AccessibilityInfo, SectionList, View } from "react-native";
 
 import { AppButton } from "@/components/AppButton";
 import { AppText } from "@/components/AppText";
 import { FilterBar } from "@/components/FilterBar";
+import { nearestProblemMessage } from "@/components/NearestPanel";
 import { PointRow } from "@/components/PointRow";
 import { ScoreBadge } from "@/components/ScoreBadge";
 import { SyncStatus } from "@/components/SyncStatus";
+import { useLocation, useLocationStore } from "@/hooks/useLocation";
 import { nearest } from "@/lib/geo";
 import { groupByBuilding, type BuildingSection } from "@/lib/points";
-import { useLocation } from "@/lib/useLocation";
 import { useDataStore } from "@/store/data";
 import { isFilterActive, useFilteredPoints, useFilterStore } from "@/store/filters";
 import { useTheme } from "@/theme/ThemeProvider";
 
 const DISTANCE_KEY = "mesafe";
+const DENIED_TEXT = "Konum izni verilmediği için liste bina adına göre sıralı.";
 
 // Haritayı kullanamayanlar (ör. ekran okuyucu) için haritadaki her bilginin liste karşılığı
 export default function ListScreen() {
@@ -29,15 +31,30 @@ export default function ListScreen() {
   const load = useDataStore((s) => s.load);
   const { permission, locating, last, checkPermission, locate } = useLocation();
   const [byName, setByName] = useState(false);
+  const [unavailable, setUnavailable] = useState(false);
   const active = isFilterActive({ types, onlyWorking });
 
+  // Her basışta yeni konum alınır: kullanıcı yürüdükten sonra liste eski konuma göre kalmasın.
+  // Alınamazsa eski konumla sıralamak yerine bina adına dönülür ve nedeni söylenir
+  const sortByLocation = async () => {
+    setByName(false);
+    setUnavailable(false);
+    const fix = await locate();
+    if (fix.ok) return;
+    setByName(true);
+    setUnavailable(fix.reason === "unavailable");
+    AccessibilityInfo.announceForAccessibility(
+      fix.reason === "unavailable" ? nearestProblemMessage("unavailable") : DENIED_TEXT,
+    );
+  };
+
+  // İzin önceden verildiyse açılışta bir kez sormadan konum alınır; açılışta izin istenmez.
+  // İzin değişimine bağlanmaz: kullanıcı butona basıp izin verdiğinde ikinci bir konum isteği atılmasın
   useEffect(() => {
-    void checkPermission();
-  }, [checkPermission]);
-  // İzin önceden verildiyse sormadan konum alınır; açılışta izin istenmez
-  useEffect(() => {
-    if (permission === "granted" && !last) void locate();
-  }, [permission, last, locate]);
+    void checkPermission().then((current) => {
+      if (current === "granted" && !useLocationStore.getState().last) void locate();
+    });
+  }, [checkPermission, locate]);
 
   // Konum varsa yakından uzağa tek liste, yoksa bina adına göre bölümler
   const distances = useMemo(
@@ -67,15 +84,11 @@ export default function ListScreen() {
           disabled={locating}
           accessibilityState={{ disabled: locating, busy: locating }}
           accessibilityHint="Konumunuz yalnızca telefonda kullanılır, sunucuya gönderilmez"
-          onPress={() => {
-            setByName(false);
-            if (!last) void locate();
-          }}
+          onPress={() => void sortByLocation()}
         />
       )}
-      {permission === "denied" && !distances && (
-        <AppText muted>Konum izni verilmediği için liste bina adına göre sıralı.</AppText>
-      )}
+      {permission === "denied" && !distances && <AppText muted>{DENIED_TEXT}</AppText>}
+      {unavailable && !distances && <AppText>{nearestProblemMessage("unavailable")}</AppText>}
     </View>
   );
 

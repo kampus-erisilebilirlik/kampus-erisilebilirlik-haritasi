@@ -1,12 +1,12 @@
 import { Link } from "expo-router";
 import { Linking, Pressable, ScrollView, View } from "react-native";
 
+import { LOW_ACCURACY_M } from "@/hooks/useLocation";
 import { formatDistance } from "@/lib/format";
 import { pointTypeLabel, pointTypePluralLabel } from "@/lib/labels";
 import { nearbyAnnouncement, type Nearby, type NearbyResult } from "@/lib/nearby";
 import { pointA11yLabel, pointSubtitle } from "@/lib/points";
 import { pointTypeSchema, type PointType } from "@/lib/schemas";
-import { LOW_ACCURACY_M } from "@/lib/useLocation";
 import { useDataStore } from "@/store/data";
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
