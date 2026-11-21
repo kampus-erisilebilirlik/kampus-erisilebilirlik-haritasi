@@ -1,0 +1,44 @@
+name: QR sayfası (GitHub Pages)
+
+# web/ klasörünü yayınlar: https://kampus-erisilebilirlik.github.io/kampus-erisilebilirlik-haritasi/
+# Repo Settings → Pages → Source: GitHub Actions seçili olmalı
+on:
+  push:
+    branches: [main]
+    paths: ["web/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      # Keepalive ile aynı secret'lar; anon anahtar herkese açık, yalnızca okuma ve log_qr_visit çağrısı yapabilir
+      - name: config.js üret
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          test -n "$SUPABASE_URL" && test -n "$SUPABASE_ANON_KEY"
+          jq -n --arg url "$SUPABASE_URL" --arg key "$SUPABASE_ANON_KEY" \
+            '{supabaseUrl: $url, anonKey: $key}' | sed '1s/^/window.KAMPUS_CONFIG = /; $s/$/;/' > web/config.js
+          rm web/config.example.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - id: deployment
+        uses: actions/deploy-pages@v4

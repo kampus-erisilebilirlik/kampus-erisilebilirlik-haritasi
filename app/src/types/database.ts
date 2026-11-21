@@ -328,6 +328,24 @@ export type Database = {
           },
         ]
       }
+      qr_visits: {
+        Row: {
+          count: number
+          day: string
+          slug: string
+        }
+        Insert: {
+          count?: number
+          day: string
+          slug: string
+        }
+        Update: {
+          count?: number
+          day?: string
+          slug?: string
+        }
+        Relationships: []
+      }
       spatial_ref_sys: {
         Row: {
           auth_name: string | null
@@ -817,6 +835,7 @@ export type Database = {
       gettransactionid: { Args: never; Returns: unknown }
       is_admin: { Args: never; Returns: boolean }
       log_app_open: { Args: never; Returns: undefined }
+      log_qr_visit: { Args: { p_slug: string }; Returns: undefined }
       longtransactionsenabled: { Args: never; Returns: boolean }
       populate_geometry_columns:
         | { Args: { tbl_oid: unknown; use_typmod?: boolean }; Returns: number }

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bina erişilebilirliği · Kampüs Erişilebilirlik Haritası</title>
+    <meta name="description" content="Selçuk Üniversitesi binasının rampa, asansör ve engelli tuvaleti bilgisi." />
+    <link rel="stylesheet" href="../style.css" />
+    <script src="../config.js" defer></script>
+    <script src="../shared.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow"><a href="../">Kampüs Erişilebilirlik Haritası</a></p>
+      <h1 id="title" tabindex="-1">Bina bilgisi yükleniyor…</h1>
+
+      <noscript>
+        <p>
+          Bu sayfa binanın erişilebilirlik bilgisini göstermek için JavaScript kullanır. Tarayıcınızda JavaScript kapalı.
+          Uygulamayı
+          <a href="https://github.com/kampus-erisilebilirlik/kampus-erisilebilirlik-haritasi/releases/latest">buradan indirebilirsiniz</a>.
+        </p>
+      </noscript>
+
+      <div id="status" role="status"></div>
+
+      <section id="building" hidden>
+        <p id="score"></p>
+        <p id="summary"></p>
+        <h2>Binadaki imkânlar</h2>
+        <ul id="facilities" class="facilities"></ul>
+        <p class="note">Bilgiler proje ekibinin saha ölçümlerine dayanır, resmî denetim değildir.</p>
+      </section>
+
+      <section id="not-found" hidden>
+        <p>Bu bağlantıdaki bina bulunamadı. Aşağıdaki listeden binayı seçebilirsiniz.</p>
+        <div id="all-buildings"></div>
+      </section>
+
+      <div class="actions">
+        <a id="open-app" class="button button-primary" href="#" hidden>Uygulamada aç</a>
+        <a id="download" class="button button-secondary" href="https://github.com/kampus-erisilebilirlik/kampus-erisilebilirlik-haritasi/releases/latest">Uygulamayı indir (Android)</a>
+      </div>
+
+      <section class="panel" aria-labelledby="install-title">
+        <h2 id="install-title">Uygulamayı kurmak için</h2>
+        <ol>
+          <li>"Uygulamayı indir" düğmesine dokunun ve sayfadaki <strong>.apk</strong> dosyasını indirin.</li>
+          <li>İndirilen dosyayı açın. Telefon "bilinmeyen uygulamalar" uyarısı verirse <strong>Ayarlar</strong>'a gidip tarayıcınız için <strong>"Bu kaynağa izin ver"</strong> seçeneğini açın.</li>
+          <li>Geri dönüp <strong>Yükle</strong>'ye dokunun. Uygulama kampüs haritasını açar; internet olmadan da son indirilen bilgiyi gösterir.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="contact-title">
+        <h2 id="contact-title">Engelli Öğrenci Birimi</h2>
+        <p>
+          Engelli Öğrenci Birimi Koordinatörlüğü<br />
+          Prof. Dr. Erol Güngör Kütüphanesi, Alaeddin Keykubat Yerleşkesi
+        </p>
+        <p>
+          Telefon: <a href="tel:+903322232534">0332 223 25 34</a><br />
+          E-posta: <a href="mailto:engelsizyasam@selcuk.edu.tr">engelsizyasam@selcuk.edu.tr</a>
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
