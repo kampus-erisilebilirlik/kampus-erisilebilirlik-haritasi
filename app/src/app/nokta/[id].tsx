@@ -1,8 +1,9 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Link, Stack, useLocalSearchParams } from "expo-router";
-import { Pressable, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 
 import { AppButton } from "@/components/AppButton";
+import { AppPressable } from "@/components/AppPressable";
 import { AppText } from "@/components/AppText";
 import { DirectionsButton } from "@/components/DirectionsButton";
 import { InfoRow } from "@/components/InfoRow";
@@ -102,7 +103,7 @@ function BuildingLink({ building }: { building: Building }) {
   const { colors, spacing } = useTheme();
   return (
     <Link href={{ pathname: "/bina/[slug]", params: { slug: building.slug } }} asChild>
-      <Pressable
+      <AppPressable
         accessibilityRole="link"
         accessibilityLabel={`Bina: ${building.name}`}
         accessibilityHint="Bina sayfasını açar"
@@ -119,7 +120,7 @@ function BuildingLink({ building }: { building: Building }) {
           {building.name}
         </AppText>
         <MaterialCommunityIcons name="chevron-right" size={24} color={colors.primary} />
-      </Pressable>
+      </AppPressable>
     </Link>
   );
 }

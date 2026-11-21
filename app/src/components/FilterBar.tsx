@@ -2,7 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import type { ComponentProps, ReactNode } from "react";
 import { useEffect, useRef } from "react";
-import { AccessibilityInfo, Pressable, ScrollView, View } from "react-native";
+import { AccessibilityInfo, ScrollView, View } from "react-native";
 
 import { pointTypeIcon } from "@/lib/icons";
 import { pointTypeLabel } from "@/lib/labels";
@@ -10,6 +10,7 @@ import { pointTypeSchema, type PointType } from "@/lib/schemas";
 import { isFilterActive, useFilteredPoints, useFilterStore } from "@/store/filters";
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
+import { AppPressable } from "./AppPressable";
 import { AppText } from "./AppText";
 
 // Çipte kısa ad, ekran okuyucuda tam ad
@@ -39,7 +40,7 @@ function Chip({ label, accessibilityLabel, checked = false, role = "checkbox", h
   const { colors, spacing } = useTheme();
   const color = checked ? colors.onPrimary : colors.text;
   return (
-    <Pressable
+    <AppPressable
       onPress={onPress}
       accessibilityRole={role}
       accessibilityState={role === "checkbox" ? { checked } : undefined}
@@ -63,7 +64,7 @@ function Chip({ label, accessibilityLabel, checked = false, role = "checkbox", h
       <AppText variant="label" style={{ color }}>
         {label}
       </AppText>
-    </Pressable>
+    </AppPressable>
   );
 }
 

@@ -41,6 +41,12 @@ describe.each(Object.entries(palettes))("%s palet", (_name, palette) => {
       expect(contrastRatio(palette.border, ground)).toBeGreaterThanOrEqual(3);
     }
   });
+
+  it("odak çerçevesi zeminlerde en az 3:1 (WCAG 1.4.11, 2.4.7)", () => {
+    for (const ground of Object.values(grounds)) {
+      expect(contrastRatio(palette.focus, ground)).toBeGreaterThanOrEqual(3);
+    }
+  });
 });
 
 describe("contrastRatio", () => {

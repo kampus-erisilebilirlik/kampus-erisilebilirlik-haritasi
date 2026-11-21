@@ -2,7 +2,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Link } from "expo-router";
 import { useEffect, useMemo, type ReactNode } from "react";
-import { AccessibilityInfo, Pressable, ScrollView, View } from "react-native";
+import { AccessibilityInfo, ScrollView, View } from "react-native";
 
 import { formatNumber } from "@/lib/format";
 import { pointTypeIcon } from "@/lib/icons";
@@ -12,6 +12,7 @@ import { useDataStore } from "@/store/data";
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
 import { AppButton } from "./AppButton";
+import { AppPressable } from "./AppPressable";
 import { AppText } from "./AppText";
 import { DirectionsButton } from "./DirectionsButton";
 import { ScoreBadge } from "./ScoreBadge";
@@ -71,14 +72,14 @@ export function SelectionCard({ target, onClose, announcement, children }: Props
         <AppText variant="heading" style={{ flex: 1 }}>
           {title}
         </AppText>
-        <Pressable
+        <AppPressable
           onPress={onClose}
           accessibilityRole="button"
           accessibilityLabel="Kartı kapat"
           style={{ width: minTouchSize, height: minTouchSize, alignItems: "center", justifyContent: "center" }}
         >
           <Ionicons name="close" size={28} color={colors.text} importantForAccessibility="no" />
-        </Pressable>
+        </AppPressable>
       </View>
       <ScrollView style={{ flexGrow: 0 }} contentContainerStyle={{ gap: spacing.sm }}>
         {target.kind === "building" ? (

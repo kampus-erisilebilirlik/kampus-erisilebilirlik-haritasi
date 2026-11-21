@@ -1,12 +1,13 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 
 import { accessScoreIcon } from "@/lib/icons";
 import { accessScoreLabel, accessScoreRule } from "@/lib/labels";
 import { accessScoreSchema, type AccessScore } from "@/lib/schemas";
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
+import { AppPressable } from "./AppPressable";
 import { AppText } from "./AppText";
 
 // "Puan nasıl belirlenir?" (#15): kural docs/saha/puanlama.md'den, bu binanın puanı işaretlenir
@@ -15,7 +16,7 @@ export function ScoreExplanation({ current }: { current: AccessScore }) {
   const [open, setOpen] = useState(false);
   return (
     <View style={{ gap: spacing.sm }}>
-      <Pressable
+      <AppPressable
         onPress={() => setOpen((o) => !o)}
         accessibilityRole="button"
         accessibilityState={{ expanded: open }}
@@ -24,7 +25,7 @@ export function ScoreExplanation({ current }: { current: AccessScore }) {
       >
         <Ionicons name={open ? "chevron-down" : "chevron-forward"} size={24} color={colors.primary} />
         <AppText style={{ color: colors.primary, fontWeight: "600" }}>Puan nasıl belirlenir?</AppText>
-      </Pressable>
+      </AppPressable>
       {open && (
         <View style={{ gap: spacing.sm }}>
           {accessScoreSchema.options.map((score) => (

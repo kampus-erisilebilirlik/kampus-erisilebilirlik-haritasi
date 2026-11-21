@@ -1,13 +1,14 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Link } from "expo-router";
 import type { ComponentProps } from "react";
-import { Linking, Pressable, View } from "react-native";
+import { Linking, View } from "react-native";
 
 import { about, repoUrl, rights, unitContact, unitServices } from "@/lib/info";
 import { useDataStore } from "@/store/data";
 import { useTheme } from "@/theme/ThemeProvider";
 import { minTouchSize } from "@/theme/tokens";
 import { AppButton } from "./AppButton";
+import { AppPressable } from "./AppPressable";
 import { AppText } from "./AppText";
 
 type IconName = ComponentProps<typeof Ionicons>["name"];
@@ -18,7 +19,7 @@ const syncFormatter = new Intl.DateTimeFormat("tr-TR", { dateStyle: "long", time
 function ExternalLink({ icon, text, label, url }: { icon: IconName; text: string; label: string; url: string }) {
   const { colors, spacing } = useTheme();
   return (
-    <Pressable
+    <AppPressable
       onPress={() => void Linking.openURL(url)}
       accessibilityRole="link"
       accessibilityLabel={label}
@@ -34,7 +35,7 @@ function ExternalLink({ icon, text, label, url }: { icon: IconName; text: string
       <AppText style={{ flex: 1, color: colors.primary, textDecorationLine: "underline", fontWeight: "600" }}>
         {text}
       </AppText>
-    </Pressable>
+    </AppPressable>
   );
 }
 
